@@ -47,6 +47,16 @@ public class MoveBase : ScriptableObject
         get { return pp; }
     }
 
+    public bool IsSpecial
+    {
+        get
+        {
+            return (type == PokemonType.Fire || type == PokemonType.Water || type == PokemonType.Grass
+                || type == PokemonType.Ice || type == PokemonType.Electric || type == PokemonType.Psychic
+                || type == PokemonType.Dragon || type == PokemonType.Dark);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
