@@ -2,19 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Pokemon
 {
+    [SerializeField] PokemonBase _base;
+    [SerializeField] int level;
 
-    public PokemonBase Base { get; set; }
-    public int Level { get; set; }
+    public PokemonBase Base
+    {
+        get
+        {
+            return _base;
+        }
+    }
+
+    public int Level
+    {
+        get
+        {
+            return level;
+        }
+    }
 
     public int HP { get; set; }
     public List<Move> Moves { get; set; }
 
-    public Pokemon(PokemonBase pBase, int pLevel)
+    public void Init()
     {
-        Base = pBase;
-        Level = pLevel;
         HP = MaxHp;
 
         // Generate Moves
@@ -81,8 +95,9 @@ public class Pokemon
 
         float attack = (move.Base.IsSpecial) ? attacker.SpAttack : attacker.Attack;
         float defense = (move.Base.IsSpecial) ? SpDefense : Defense;
+        float stab = (move.Base.Type == attacker.Base.Type1 || move.Base.Type == attacker.Base.Type2) ? 1.5f : 1f;
 
-        float modifiers = Random.Range(0.85f, 1f) * type * critical;
+        float modifiers = Random.Range(0.85f, 1f) * type * critical * stab;
         float a = (2 * attacker.Level + 10) / 250f;
         float d = a * move.Base.Power * ((float)attack / defense) + 2;
         int damage = Mathf.FloorToInt(d * modifiers);

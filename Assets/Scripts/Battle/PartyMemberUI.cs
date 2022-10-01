@@ -3,25 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BattleHud : MonoBehaviour
+public class PartyMemberUI : MonoBehaviour
 {
     [SerializeField] Text nameText;
     [SerializeField] Text levelText;
     [SerializeField] HPBar hpBar;
+
+    [SerializeField] Color highlightedColor;
 
     Pokemon _pokemon;
 
     public void SetData(Pokemon pokemon)
     {
         _pokemon = pokemon;
-        
+
         nameText.text = pokemon.Base.Name;
         levelText.text = "Lvl " + pokemon.Level;
-        hpBar.SetHP((float) pokemon.HP / pokemon.MaxHp);
+        hpBar.SetHP((float)pokemon.HP / pokemon.MaxHp);
     }
-    
-    public IEnumerator UpdateHP()
+
+    public void SetSelected(bool selected)
     {
-        yield return hpBar.SetHPSmooth((float)_pokemon.HP / _pokemon.MaxHp);
+        if (selected)
+        {
+            nameText.color = highlightedColor;
+        }
+        else
+        {
+            nameText.color = Color.black;
+        }
     }
 }
