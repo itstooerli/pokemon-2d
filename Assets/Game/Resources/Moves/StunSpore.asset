@@ -10,24 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7eddeceecca1a6f439df22511ddda322, type: 3}
-  m_Name: Ember
+  m_Name: StunSpore
   m_EditorClassIdentifier: 
-  name: Ember
+  name: Stun Spore
   description: 
-  type: 2
-  power: 40
-  accuracy: 100
-  alwaysHits: 0
-  pp: 25
-  category: 1
+  type: 5
+  power: 0
+  accuracy: 75
+  pp: 30
+  category: 2
   effects:
     boosts: []
-    status: 0
-    volatileStatus: 0
-  secondaries:
-  - boosts: []
-    status: 2
-    volatileStatus: 0
-    chance: 50
-    target: 0
+    status: 4
   target: 0

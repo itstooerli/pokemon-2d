@@ -10,24 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7eddeceecca1a6f439df22511ddda322, type: 3}
-  m_Name: Ember
+  m_Name: PoisonPowder
   m_EditorClassIdentifier: 
-  name: Ember
+  name: Poison Powder
   description: 
-  type: 2
-  power: 40
+  type: 8
+  power: 0
   accuracy: 100
-  alwaysHits: 0
-  pp: 25
-  category: 1
+  pp: 20
+  category: 2
   effects:
     boosts: []
-    status: 0
-    volatileStatus: 0
-  secondaries:
-  - boosts: []
-    status: 2
-    volatileStatus: 0
-    chance: 50
-    target: 0
+    status: 1
   target: 0

@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f07f82b3732bff4f962280b66cb0912, type: 3}
-  m_Name: Squirtle
+  m_Name: 002 - Ivysaur
   m_EditorClassIdentifier: 
-  name: Squirtle
+  name: Ivysaur
   description: 
-  frontSprite: {fileID: 21300000, guid: 818cf159951cf9a4e8e810b2bbab4096, type: 3}
-  backSprite: {fileID: 21300000, guid: 18fc6e8e3f72b154fba88f358748be28, type: 3}
-  type1: 3
-  type2: 0
-  maxHp: 44
-  attack: 48
-  defense: 65
-  spAttack: 50
-  spDefense: 64
-  speed: 43
+  frontSprite: {fileID: 21300000, guid: 179bd38ab997c7440844309bc52e708a, type: 3}
+  backSprite: {fileID: 21300000, guid: 653a6fe1d97188644a3747cd5e674bc4, type: 3}
+  type1: 5
+  type2: 8
+  maxHp: 60
+  attack: 62
+  defense: 63
+  spAttack: 80
+  spDefense: 80
+  speed: 60
   learnableMoves:
+  - moveBase: {fileID: 11400000, guid: 7b7d046e06347b8468912556eeb5d464, type: 2}
+    level: 1
   - moveBase: {fileID: 11400000, guid: 93aafb43e9ceabc40ac7bc008b07f263, type: 2}
     level: 1
-  - moveBase: {fileID: 11400000, guid: 092c2c785258daa44896a238b45626a0, type: 2}
+  - moveBase: {fileID: 11400000, guid: 7ae5e8f1acbd7c0489f6bb74941cfce6, type: 2}
     level: 1
-  - moveBase: {fileID: 11400000, guid: a545fe4c678361b4eb960b73e4e6c64a, type: 2}
-    level: 3
