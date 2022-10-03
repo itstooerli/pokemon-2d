@@ -117,7 +117,7 @@ public class ConditionsDB
                     {
                         if (pokemon.VolatileStatusTime <= 0)
                         {
-                            pokemon.CureStatus();
+                            pokemon.CureVolatileStatus();
                             pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is no longer confused!");
                             return true;
                         }
@@ -138,6 +138,28 @@ public class ConditionsDB
                     }
             }
         },
+
+        {ConditionID.flinch, new Condition()
+            {
+                Name = "Flinch",
+                StartMessage = "flinched",
+                OnStart = (Pokemon pokemon) =>
+                    {
+                        Debug.Log($"Pokemon might flinch");
+                    },
+
+                OnBeforeMove = (Pokemon pokemon) =>
+                    {
+                        Debug.Log($"Pokemon might have been flinched...");
+                        return true;
+                    },
+
+                OnAfterTurn = (Pokemon pokemon) =>
+                    {
+                        pokemon.CureVolatileStatus();
+                    }
+            }
+        },
     };
 }
 
@@ -149,5 +171,6 @@ public enum ConditionID
     slp,
     par,
     frz,
-    confusion
+    confusion,
+    flinch,
 }

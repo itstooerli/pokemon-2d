@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7eddeceecca1a6f439df22511ddda322, type: 3}
-  m_Name: Tackle
+  m_Name: RazorLeaf
   m_EditorClassIdentifier: 
-  name: Tackle
+  name: Razor Leaf
   description: 
-  type: 1
-  power: 40
-  accuracy: 100
+  type: 5
+  power: 55
+  accuracy: 95
   alwaysHits: 0
-  pp: 35
+  pp: 25
   priority: 0
   category: 0
   effects:

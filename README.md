@@ -8,3 +8,10 @@ of training, catching pokemon and eventually implementing a consecutive battle c
 Credit to [Game Dev Experiments YouTube Tutorial](https://www.youtube.com/playlist?list=PLLf84Zj7U26kfPQ00JVI2nIoozuPkykDX) for much guidance.
 
 I DO NOT CLAIM ANY SPRITES AS MY OWN. ALL SPRITES BELONG TO POKEMON COMPANY AND ARE USED FOR NON-COMMERCIAL, PERSONAL USE.
+
+As of 10/3/2022, this project has followed along with Game Dev Experiment's tutorial up to and including #26. In addition to this progression, personal TODO's include
+* Implementing Leech Seed condition
+* Implementing Flinch condition
+* Expanding pokemon resource universe
+* Expanding move resource universe
+* Implementing Struggle when out of Pp

@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f07f82b3732bff4f962280b66cb0912, type: 3}
-  m_Name: 007 - Squirtle
+  m_Name: 008 - Wartortle
   m_EditorClassIdentifier: 
-  name: Squirtle
+  name: Wartortle
   description: 
-  frontSprite: {fileID: 21300000, guid: 818cf159951cf9a4e8e810b2bbab4096, type: 3}
-  backSprite: {fileID: 21300000, guid: 18fc6e8e3f72b154fba88f358748be28, type: 3}
+  frontSprite: {fileID: 21300000, guid: 9b0e6fc5f36b9ec4197e23d680b3707a, type: 3}
+  backSprite: {fileID: 21300000, guid: 1287bcbc279066d459ff39bc3b587760, type: 3}
   type1: 3
   type2: 0
-  maxHp: 44
-  attack: 48
-  defense: 65
-  spAttack: 50
-  spDefense: 64
-  speed: 43
+  maxHp: 59
+  attack: 63
+  defense: 80
+  spAttack: 65
+  spDefense: 80
+  speed: 58
   learnableMoves:
-  - moveBase: {fileID: 11400000, guid: 878f599e8e91f4e4a999fb17b40efb33, type: 2}
-    level: 12
   - moveBase: {fileID: 11400000, guid: 93aafb43e9ceabc40ac7bc008b07f263, type: 2}
     level: 1
   - moveBase: {fileID: 11400000, guid: 092c2c785258daa44896a238b45626a0, type: 2}
     level: 1
   - moveBase: {fileID: 11400000, guid: a545fe4c678361b4eb960b73e4e6c64a, type: 2}
-    level: 3
+    level: 1
   - moveBase: {fileID: 11400000, guid: 9a07b88f6af7f6c40b9b8aa663fd22da, type: 2}
-    level: 6
+    level: 1
   - moveBase: {fileID: 11400000, guid: 5758ce841ec081d4185fa40c9c463ccf, type: 2}
     level: 9
+  - moveBase: {fileID: 11400000, guid: 878f599e8e91f4e4a999fb17b40efb33, type: 2}
+    level: 12

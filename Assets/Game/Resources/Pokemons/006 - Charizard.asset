@@ -10,28 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f07f82b3732bff4f962280b66cb0912, type: 3}
-  m_Name: 004 - Charmander
+  m_Name: 006 - Charizard
   m_EditorClassIdentifier: 
-  name: Charmander
+  name: Charizard
   description: 
-  frontSprite: {fileID: 21300000, guid: cd259d9d4f8ba2749a16d1cc64d46bec, type: 3}
-  backSprite: {fileID: 21300000, guid: ed8e1d9976a1fd94d961840d8f6e7764, type: 3}
+  frontSprite: {fileID: 21300000, guid: d819d29c71518d340b52028b17af51c2, type: 3}
+  backSprite: {fileID: 21300000, guid: 4e7023cd378451d4d80b1c653bb62ff7, type: 3}
   type1: 2
-  type2: 0
-  maxHp: 39
-  attack: 52
-  defense: 43
-  spAttack: 60
-  spDefense: 50
-  speed: 65
+  type2: 10
+  maxHp: 78
+  attack: 84
+  defense: 78
+  spAttack: 109
+  spDefense: 85
+  speed: 100
   learnableMoves:
+  - moveBase: {fileID: 11400000, guid: 582cabf8fa3aa334da57be8bc9621423, type: 2}
+    level: 1
   - moveBase: {fileID: 11400000, guid: 7b7d046e06347b8468912556eeb5d464, type: 2}
     level: 1
   - moveBase: {fileID: 11400000, guid: b3f4f65c267c76844ac143a0365e9e21, type: 2}
     level: 1
-  - moveBase: {fileID: 11400000, guid: 582cabf8fa3aa334da57be8bc9621423, type: 2}
-    level: 4
   - moveBase: {fileID: 11400000, guid: 1c72e79828f36c44d87aa8f2cd0050c0, type: 2}
-    level: 8
+    level: 1
   - moveBase: {fileID: 11400000, guid: 928410a9e74d67142b043bb011047ce7, type: 2}
     level: 12

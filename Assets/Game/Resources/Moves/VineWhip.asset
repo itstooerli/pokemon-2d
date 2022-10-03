@@ -10,20 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7eddeceecca1a6f439df22511ddda322, type: 3}
-  m_Name: Tackle
+  m_Name: VineWhip
   m_EditorClassIdentifier: 
-  name: Tackle
+  name: Vine Whip
   description: 
-  type: 1
-  power: 40
+  type: 5
+  power: 45
   accuracy: 100
-  alwaysHits: 0
-  pp: 35
-  priority: 0
-  category: 0
+  pp: 25
+  category: 1
   effects:
     boosts: []
-    status: 0
-    volatileStatus: 0
-  secondaries: []
   target: 0

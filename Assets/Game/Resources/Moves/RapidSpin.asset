@@ -10,15 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7eddeceecca1a6f439df22511ddda322, type: 3}
-  m_Name: Vine Whip
+  m_Name: RapidSpin
   m_EditorClassIdentifier: 
-  name: Vine Whip
+  name: Rapid Spin
   description: 
-  type: 5
-  power: 45
+  type: 1
+  power: 50
   accuracy: 100
-  pp: 25
-  category: 1
+  alwaysHits: 0
+  pp: 40
+  priority: 0
+  category: 0
   effects:
     boosts: []
+    status: 0
+    volatileStatus: 0
+  secondaries:
+  - boosts:
+    - stat: 4
+      boost: 1
+    status: 0
+    volatileStatus: 0
+    chance: 100
+    target: 1
   target: 0

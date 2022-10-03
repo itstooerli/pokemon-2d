@@ -159,7 +159,9 @@ public class BattleSystem : MonoBehaviour
         {
             sourceUnit.PlayAttackAnimation();
             yield return new WaitForSeconds(1f);
-            targetUnit.PlayHitAnimation();
+
+            if (move.Base.Target != MoveTarget.Self)
+                targetUnit.PlayHitAnimation();
 
             if (move.Base.Category == MoveCategory.Status)
             {
