@@ -5,16 +5,20 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] string name;
+    [SerializeField] Sprite sprite;
+
     public event Action onEncounter;
+    public event Action<Collider2D> onEnterTrainerView;
 
     private Vector2 input;
     
     private Character character;
 
-    // Start is called before the first frame update
-    void Start()
+    // CUSTOM: Allow trainers to interact with character
+    public Character Character
     {
- 
+        get { return character; }
     }
 
     private void Awake()
@@ -35,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
             if (input != Vector2.zero)
             {
-                StartCoroutine(character.Move(input, CheckForEncounters));
+                StartCoroutine(character.Move(input, OnMoveOver));
             }
         }
 
@@ -62,6 +66,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void OnMoveOver()
+    {
+        CheckForEncounters();
+        CheckIfInTrainersView();
+    }
+
     private void CheckForEncounters()
     {
         if (Physics2D.OverlapCircle(transform.position, 0.2f, GameLayers.i.GrassLayer) != null)
@@ -72,5 +82,25 @@ public class PlayerController : MonoBehaviour
                 onEncounter();
             }
         }
+    }
+
+    private void CheckIfInTrainersView()
+    {
+        var collider = Physics2D.OverlapCircle(transform.position, 0.2f, GameLayers.i.FOVLayer);
+        if (collider != null)
+        {
+            character.Animator.IsMoving = false;
+            onEnterTrainerView?.Invoke(collider);
+        }
+    }
+
+    public string Name
+    {
+        get { return name; }
+    }
+
+    public Sprite Sprite
+    {
+        get { return sprite; }
     }
 }
