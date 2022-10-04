@@ -27,6 +27,8 @@ public class PokemonBase : ScriptableObject
     [SerializeField] int spDefense;
     [SerializeField] int speed;
 
+    [SerializeField] int catchRate = 255;
+
     // LearnableMoves
     [SerializeField] List<LearnableMove> learnableMoves;
 
@@ -95,17 +97,7 @@ public class PokemonBase : ScriptableObject
         get { return learnableMoves; }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int CatchRate => catchRate;
 }
 
 [System.Serializable]
