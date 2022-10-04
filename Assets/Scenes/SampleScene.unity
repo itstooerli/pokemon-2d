@@ -535,8 +535,6 @@ MonoBehaviour:
     level: 8
   - _base: {fileID: 11400000, guid: 4715e7d154289d5439c0ba162a491dd6, type: 2}
     level: 12
-  - _base: {fileID: 11400000, guid: 4b8532857b494b6428182f6863f8c3ac, type: 2}
-    level: 8
 --- !u!114 &256147790
 MonoBehaviour:
   m_ObjectHideFlags: 0
