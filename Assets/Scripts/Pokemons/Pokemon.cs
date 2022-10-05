@@ -292,7 +292,7 @@ public class Pokemon
         }
 
         if (VolatileStatus?.OnBeforeMove != null)
-        {
+        {   
             if (!VolatileStatus.OnBeforeMove(this))
             {
                 canPerformMove = false;

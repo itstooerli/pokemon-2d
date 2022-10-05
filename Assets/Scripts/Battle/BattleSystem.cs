@@ -193,14 +193,14 @@ public class BattleSystem : MonoBehaviour
             var secondPokemon = secondUnit.Pokemon;
 
             // First Move
-            yield return RunMove(firstUnit, secondUnit, firstUnit.Pokemon.CurrentMove);
+            yield return RunMove(firstUnit, secondUnit, firstUnit.Pokemon.CurrentMove, true);
             yield return RunAfterTurn(firstUnit);
             if (state == BattleState.BattleOver) yield break;
 
             if (secondPokemon.HP > 0)
             {
                 // Second Turn
-                yield return RunMove(secondUnit, firstUnit, secondUnit.Pokemon.CurrentMove);
+                yield return RunMove(secondUnit, firstUnit, secondUnit.Pokemon.CurrentMove, false);
                 yield return RunAfterTurn(secondUnit);
                 if (state == BattleState.BattleOver) yield break;
             }
@@ -225,7 +225,7 @@ public class BattleSystem : MonoBehaviour
 
             // Enemy Turn
             var enemyMove = enemyUnit.Pokemon.GetRandomMove();
-            yield return RunMove(enemyUnit, playerUnit, enemyMove);
+            yield return RunMove(enemyUnit, playerUnit, enemyMove, false);
             yield return RunAfterTurn(enemyUnit);
             if (state == BattleState.BattleOver) yield break;
         }
@@ -236,7 +236,7 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    IEnumerator RunMove(BattleUnit sourceUnit, BattleUnit targetUnit, Move move)
+    IEnumerator RunMove(BattleUnit sourceUnit, BattleUnit targetUnit, Move move, bool isFirstUnit=true)
     {
         bool canRunMove = sourceUnit.Pokemon.OnBeforeMove();
 
@@ -261,7 +261,7 @@ public class BattleSystem : MonoBehaviour
 
             if (move.Base.Category == MoveCategory.Status)
             {
-                yield return RunMoveEffects(move.Base.Effects, sourceUnit.Pokemon, targetUnit.Pokemon, move.Base.Target);
+                yield return RunMoveEffects(move.Base.Effects, sourceUnit.Pokemon, targetUnit.Pokemon, move.Base.Target, isFirstUnit);
             }
             else
             {
@@ -278,7 +278,7 @@ public class BattleSystem : MonoBehaviour
 
                     if (rand <= secondary.Chance)
                     {
-                        yield return RunMoveEffects(secondary, sourceUnit.Pokemon, targetUnit.Pokemon, secondary.Target);
+                        yield return RunMoveEffects(secondary, sourceUnit.Pokemon, targetUnit.Pokemon, secondary.Target, isFirstUnit);
                     }
                 }
             }
@@ -294,7 +294,8 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    IEnumerator RunMoveEffects(MoveEffects effects, Pokemon source, Pokemon target, MoveTarget moveTarget)
+    // CUSTOM: Added new input bool for IsFirstUnit to accommodate flinch, etc.
+    IEnumerator RunMoveEffects(MoveEffects effects, Pokemon source, Pokemon target, MoveTarget moveTarget, bool isFirstMove)
     {
         // Stat Boosting
         if (effects.Boosts != null)
@@ -316,7 +317,8 @@ public class BattleSystem : MonoBehaviour
         }
 
         // Volatile Status Condition
-        if (effects.VolatileStatus != ConditionID.none)
+        if (effects.VolatileStatus != ConditionID.none && 
+            (effects.VolatileStatus != ConditionID.flinch || isFirstMove))  // CUSTOM: Added new input bool for IsFirstUnit to accommodate flinch, etc.
         {
             target.SetVolatileStatus(effects.VolatileStatus);
         }

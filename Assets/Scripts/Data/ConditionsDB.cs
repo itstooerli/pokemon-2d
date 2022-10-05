@@ -139,25 +139,16 @@ public class ConditionsDB
             }
         },
 
+        // CUSTOM: Added new input bool for IsFirstUnit to accommodate flinch, etc.
         {ConditionID.flinch, new Condition()
             {
                 Name = "Flinch",
                 StartMessage = "flinched",
-                OnStart = (Pokemon pokemon) =>
-                    {
-                        Debug.Log($"Pokemon might flinch");
-                    },
-
                 OnBeforeMove = (Pokemon pokemon) =>
                     {
-                        Debug.Log($"Pokemon might have been flinched...");
-                        return true;
-                    },
-
-                OnAfterTurn = (Pokemon pokemon) =>
-                    {
                         pokemon.CureVolatileStatus();
-                    }
+                        return false;
+                    },
             }
         },
     };

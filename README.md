@@ -9,9 +9,12 @@ Credit to [Game Dev Experiments YouTube Tutorial](https://www.youtube.com/playli
 
 I DO NOT CLAIM ANY SPRITES AS MY OWN. ALL SPRITES BELONG TO POKEMON COMPANY AND ARE USED FOR NON-COMMERCIAL, PERSONAL USE.
 
-As of 10/3/2022, this project has followed along with Game Dev Experiment's tutorial up to and including #26. In addition to this progression, personal TODO's include
+As of 10/5/2022, this project has followed along with Game Dev Experiment's tutorial up to and including #40. In addition to this progression, personal TODO's include
 * Implementing Leech Seed condition
-* Implementing Flinch condition
+* ~~Implementing Flinch condition~~ (Implemented 2022/10/5)
 * Expanding pokemon resource universe
 * Expanding move resource universe
 * Implementing Struggle when out of Pp
+* Implementing Pokemon abilities
+* Implementing weather conditions
+* Including Yes/No dialog box for new moves for confirmation
