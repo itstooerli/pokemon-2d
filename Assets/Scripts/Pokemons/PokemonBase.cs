@@ -35,6 +35,8 @@ public class PokemonBase : ScriptableObject
     // LearnableMoves
     [SerializeField] List<LearnableMove> learnableMoves;
 
+    public static int MaxNumOfMoves { get; set; } = 4;
+
     /// <summary>
     /// Returns experience for each level per https://bulbapedia.bulbagarden.net/wiki/Experience#Relation_to_level
     /// </summary>

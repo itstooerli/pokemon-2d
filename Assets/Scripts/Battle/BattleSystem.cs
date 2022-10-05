@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public enum BattleState { Start, ActionSelection, MoveSelection, RunningTurn, Busy, PartyScreen, AboutToUse, BattleOver }
+public enum BattleState { Start, ActionSelection, MoveSelection, RunningTurn, Busy, PartyScreen, AboutToUse, MoveToForget, BattleOver }
 public enum BattleAction { Move, SwitchPokemon, UseItem, Run }
 
 public class BattleSystem : MonoBehaviour
@@ -17,6 +18,8 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] Image playerImage;
     [SerializeField] Image trainerImage;
     [SerializeField] GameObject pokeballPrefab;
+    [SerializeField] NewMoveSelectionUI newMoveSelectionUI;
+
 
     public event Action<bool> OnBattleOver;
 
@@ -36,6 +39,7 @@ public class BattleSystem : MonoBehaviour
     TrainerController trainer;
 
     int escapeAttempts;
+    MoveBase moveToLearn;
 
     // Start is called before the first frame update
     public void StartBattle(PokemonParty playerParty, Pokemon wildPokemon)
@@ -147,6 +151,16 @@ public class BattleSystem : MonoBehaviour
         
         state = BattleState.AboutToUse;
         dialogBox.EnableChoiceSelector(true);
+    }
+
+    IEnumerator ChooseMoveToForget(Pokemon pokemon, MoveBase newMove)
+    {
+        state = BattleState.Busy;
+        yield return dialogBox.TypeDialog($"Choose a move you want to forget.");
+        newMoveSelectionUI.gameObject.SetActive(true);
+        newMoveSelectionUI.SetMoveData(pokemon.Moves.Select(x => x.Base).ToList(), newMove);
+        moveToLearn = newMove;
+        state = BattleState.MoveToForget;
     }
 
     IEnumerator RunTurns(BattleAction playerAction)
@@ -394,8 +408,33 @@ public class BattleSystem : MonoBehaviour
             while (playerUnit.Pokemon.CheckForLevelUp())
             {
                 playerUnit.Hud.SetLevel();
+                playerUnit.Pokemon.BoostStatsAfterLevelUp();
                 yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} grew to level {playerUnit.Pokemon.Level}!");
+
+                // Try to learn a new Move
+                var newMove = playerUnit.Pokemon.GetLearnableMoveAtCurrLevel();
+
+                if (newMove != null)
+                {
+                    if (playerUnit.Pokemon.Moves.Count < PokemonBase.MaxNumOfMoves)
+                    {
+                        // Learn new move automatically
+                        playerUnit.Pokemon.LearnMove(newMove);
+                        yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} learned {newMove.Base.Name}!");
+                        dialogBox.SetMoveNames(playerUnit.Pokemon.Moves);
+                    }
+                    else
+                    {
+                        // Player picks to forget old move
+                        yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} is trying to learn {newMove.Base.Name}, but it cannot learn more than {PokemonBase.MaxNumOfMoves} moves.");
+                        yield return ChooseMoveToForget(playerUnit.Pokemon, newMove.Base);
+                        yield return new WaitUntil(() => state != BattleState.MoveToForget);
+                        yield return new WaitForSeconds(2f);
+                    }
+                }
+
                 yield return playerUnit.Hud.SetExpSmooth(true);
+                yield return playerUnit.Hud.UpdateHP();
             }
             
             yield return new WaitForSeconds(1f); // Wait for animations to finish
@@ -477,6 +516,29 @@ public class BattleSystem : MonoBehaviour
         else if (state == BattleState.AboutToUse)
         {
             HandleAboutToUse();
+        }
+        else if (state == BattleState.MoveToForget)
+        {
+            Action<int> onMoveSelected = (moveIndex) =>
+            {
+                newMoveSelectionUI.gameObject.SetActive(false);
+                if (moveIndex == PokemonBase.MaxNumOfMoves)
+                {
+                    // Do not learn the new move
+                    StartCoroutine(dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} did not learn {moveToLearn.Name}."));
+                }
+                else
+                {
+                    // Forget the selected move and learn new move
+                    var selectedMove = playerUnit.Pokemon.Moves[moveIndex].Base;
+                    StartCoroutine(dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} forgot {selectedMove.Name} and learned {moveToLearn.Name}!"));
+                    playerUnit.Pokemon.Moves[moveIndex] = new Move(moveToLearn);
+                }
+
+                moveToLearn = null;
+                state = BattleState.RunningTurn;
+            };
+            newMoveSelectionUI.HandleMoveSelection(onMoveSelected);
         }
     }
 
