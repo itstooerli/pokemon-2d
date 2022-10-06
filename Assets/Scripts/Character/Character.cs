@@ -9,11 +9,23 @@ public class Character : MonoBehaviour
 
     public bool IsMoving { get; private set; }
 
+
+    public float OffsetY {get; private set; } = 0.3f;
+
     CharacterAnimator animator;
 
     private void Awake()
     {
         animator = GetComponent<CharacterAnimator>();
+        SetPositionAndSnapToTile(transform.position); // Snap position of character to center of tile upon load
+    }
+
+    public void SetPositionAndSnapToTile(Vector2 pos)
+    {
+        pos.x = Mathf.Floor(pos.x) + 0.5f; // Place in center of tile
+        pos.y = Mathf.Floor(pos.y) + 0.5f + OffsetY; // Place slightly above center
+
+        transform.position = pos;
     }
 
     // Coroutine to move the character
