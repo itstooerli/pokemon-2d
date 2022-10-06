@@ -13,6 +13,10 @@ public class PokemonParty : MonoBehaviour
         {
             return pokemons;
         }
+        set
+        {
+            pokemons = value;
+        }
     }
 
     // Start is called before the first frame update

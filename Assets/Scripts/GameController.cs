@@ -22,6 +22,8 @@ public class GameController : MonoBehaviour
     {
         Instance = this;
         ConditionsDB.Init();
+        PokemonDB.Init();
+        MoveDB.Init();
     }
 
     // Start is called before the first frame update
@@ -106,6 +108,15 @@ public class GameController : MonoBehaviour
         if (state == GameState.FreeRoam)
         {
             playerController.HandleUpdate();
+
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                SavingSystem.i.Save("SaveSlot1");
+            }
+            else if (Input.GetKeyDown(KeyCode.L))
+            {
+                SavingSystem.i.Load("SaveSlot1");
+            }
         }
         else if (state == GameState.Battle)
         {
