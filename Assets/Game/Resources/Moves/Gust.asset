@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7eddeceecca1a6f439df22511ddda322, type: 3}
-  m_Name: LeechSeed
+  m_Name: Gust
   m_EditorClassIdentifier: 
-  name: Leech Seed
+  name: Gust
   description: 
-  type: 5
-  power: 0
-  accuracy: 90
+  type: 10
+  power: 40
+  accuracy: 100
   alwaysHits: 0
-  pp: 10
+  pp: 35
   priority: 0
-  category: 2
+  category: 1
   effects:
     boosts: []
     status: 0
-    volatileStatus: 8
+    volatileStatus: 0
   secondaries: []
   target: 0

@@ -204,6 +204,30 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4879960106528555423, guid: 6894d1af93e171046a7fdd0833e0308b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4879960106528555423, guid: 6894d1af93e171046a7fdd0833e0308b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4879960106528555423, guid: 6894d1af93e171046a7fdd0833e0308b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4879960106528555423, guid: 6894d1af93e171046a7fdd0833e0308b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4879960106528555423, guid: 6894d1af93e171046a7fdd0833e0308b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4879960106528555423, guid: 6894d1af93e171046a7fdd0833e0308b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6771053062757635972, guid: 6894d1af93e171046a7fdd0833e0308b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -606,8 +630,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wildPokemons:
-  - _base: {fileID: 11400000, guid: 6a1da40645e529a4ab38722bcea3bfd7, type: 2}
-    level: 7
+  - _base: {fileID: 11400000, guid: 4715e7d154289d5439c0ba162a491dd6, type: 2}
+    level: 49
 --- !u!1001 &2075234284
 PrefabInstance:
   m_ObjectHideFlags: 0

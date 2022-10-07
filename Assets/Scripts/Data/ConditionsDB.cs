@@ -111,20 +111,20 @@ public class ConditionsDB
                 OnStart = (Pokemon pokemon) =>
                     {
                         // Confused for 1-4 turns
-                        pokemon.VolatileStatusTime = Random.Range(1, 5);
-                        Debug.Log($"Will be confused for {pokemon.VolatileStatusTime} moves");
+                        pokemon.VolatileStatuses[ConditionID.confusion].VolatileStatusDuration = Random.Range(1, 5);
+                        Debug.Log($"Will be confused for {pokemon.VolatileStatuses[ConditionID.confusion].VolatileStatusDuration} moves");
                     },
 
                 OnBeforeMove = (Pokemon pokemon) =>
                     {
-                        if (pokemon.VolatileStatusTime <= 0)
+                        if (pokemon.VolatileStatuses[ConditionID.confusion].VolatileStatusDuration <= 0)
                         {
-                            pokemon.CureVolatileStatus();
+                            pokemon.CureOneVolatileStatus(ConditionID.confusion);
                             pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is no longer confused!");
                             return true;
                         }
 
-                        pokemon.VolatileStatusTime--;
+                        pokemon.VolatileStatuses[ConditionID.confusion].VolatileStatusDuration--;
                         pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is confused...");
 
                         // 50% chance to do a move
@@ -149,7 +149,7 @@ public class ConditionsDB
                 StartMessage = "flinched",
                 OnBeforeMove = (Pokemon pokemon) =>
                     {
-                        pokemon.CureVolatileStatus();
+                        pokemon.CureOneVolatileStatus(ConditionID.flinch);
                         return false;
                     },
             }

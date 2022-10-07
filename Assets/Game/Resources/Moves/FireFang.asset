@@ -10,20 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7eddeceecca1a6f439df22511ddda322, type: 3}
-  m_Name: LeechSeed
+  m_Name: FireFang
   m_EditorClassIdentifier: 
-  name: Leech Seed
+  name: Fire Fang
   description: 
-  type: 5
-  power: 0
-  accuracy: 90
+  type: 2
+  power: 65
+  accuracy: 95
   alwaysHits: 0
-  pp: 10
+  pp: 15
   priority: 0
-  category: 2
+  category: 0
   effects:
     boosts: []
     status: 0
-    volatileStatus: 8
-  secondaries: []
+    volatileStatus: 0
+  secondaries:
+  - boosts: []
+    status: 2
+    volatileStatus: 0
+    chance: 10
+    target: 0
+  - boosts: []
+    status: 0
+    volatileStatus: 7
+    chance: 10
+    target: 0
   target: 0

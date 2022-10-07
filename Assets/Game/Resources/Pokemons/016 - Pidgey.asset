@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f07f82b3732bff4f962280b66cb0912, type: 3}
+  m_Name: 016 - Pidgey
+  m_EditorClassIdentifier: 
+  name: Pidgey
+  description: 
+  frontSprite: {fileID: 21300000, guid: d20a7c70e7ee46f48a8d7af267137e20, type: 3}
+  backSprite: {fileID: 21300000, guid: e6107b3833bd86743af90a171a94aa1f, type: 3}
+  type1: 1
+  type2: 10
+  maxHp: 40
+  attack: 45
+  defense: 40
+  spAttack: 35
+  spDefense: 35
+  speed: 56
+  expYield: 50
+  growthRate: 2
+  catchRate: 255
+  learnableMoves:
+  - moveBase: {fileID: 11400000, guid: 93aafb43e9ceabc40ac7bc008b07f263, type: 2}
+    level: 0
+  - moveBase: {fileID: 11400000, guid: 0ea336bb9ee2eee408a1e83052c103f4, type: 2}
+    level: 5
+  - moveBase: {fileID: 11400000, guid: f7d09fea33333cd40b02c5fae9a7ccaa, type: 2}
+    level: 9
+  - moveBase: {fileID: 11400000, guid: 489dff28de41c034db833ba019d5b86a, type: 2}
+    level: 13

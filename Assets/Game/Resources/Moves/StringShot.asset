@@ -10,20 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7eddeceecca1a6f439df22511ddda322, type: 3}
-  m_Name: LeechSeed
+  m_Name: StringShot
   m_EditorClassIdentifier: 
-  name: Leech Seed
+  name: String Shot
   description: 
-  type: 5
+  type: 12
   power: 0
-  accuracy: 90
+  accuracy: 95
   alwaysHits: 0
-  pp: 10
+  pp: 40
   priority: 0
   category: 2
   effects:
-    boosts: []
+    boosts:
+    - stat: 4
+      boost: -2
     status: 0
-    volatileStatus: 8
+    volatileStatus: 0
   secondaries: []
   target: 0

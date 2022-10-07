@@ -42,8 +42,9 @@ public class Pokemon
     public Dictionary<Stat, int> StatBoosts { get; private set; }
     public Condition Status { get; private set; }
     public int StatusTime { get; set; }
-    public Condition VolatileStatus { get; private set; }
-    public int VolatileStatusTime { get; set; }
+
+    // CUSTOM: Allow for multiple volatile statuses
+    public Dictionary<ConditionID, VolatileStatus> VolatileStatuses { get; private set; } // ConditionID : {Condition, Duration}
 
     public Queue<string> StatusChanges { get; private set; }
     public bool HpChanged { get; set; }
@@ -74,7 +75,7 @@ public class Pokemon
         StatusChanges = new Queue<string>();
         ResetStatBoosts();
         Status = null;
-        VolatileStatus = null;
+        VolatileStatuses = new Dictionary<ConditionID, VolatileStatus>();
     }
 
     public Pokemon(PokemonSaveData saveData)
@@ -99,7 +100,7 @@ public class Pokemon
         CalculateStats();
         StatusChanges = new Queue<string>();
         ResetStatBoosts();
-        VolatileStatus = null;
+        VolatileStatuses = new Dictionary<ConditionID, VolatileStatus>();
     }
 
     public PokemonSaveData GetSaveData()
@@ -300,16 +301,26 @@ public class Pokemon
 
     public void SetVolatileStatus(ConditionID conditionId)
     {
-        if (VolatileStatus != null) return;
+        if (VolatileStatuses.ContainsKey(conditionId)) return;
 
-        VolatileStatus = ConditionsDB.Conditions[conditionId];
-        VolatileStatus?.OnStart?.Invoke(this);
-        StatusChanges.Enqueue($"{Base.Name} {VolatileStatus.StartMessage}!");
+        VolatileStatus volatileStatus = new VolatileStatus()
+            {
+                VolatileStatusInfo = ConditionsDB.Conditions[conditionId],
+            };
+
+        VolatileStatuses.Add(conditionId, volatileStatus);
+        VolatileStatuses[conditionId].VolatileStatusInfo?.OnStart?.Invoke(this);
+        StatusChanges.Enqueue($"{Base.Name} {VolatileStatuses[conditionId].VolatileStatusInfo.StartMessage}!");
     }
 
-    public void CureVolatileStatus()
+    public void CureOneVolatileStatus(ConditionID conditionId)
     {
-        VolatileStatus = null;
+        VolatileStatuses.Remove(conditionId);
+    }
+
+    public void CureAllVolatileStatuses()
+    {
+        VolatileStatuses.Clear();
     }
 
     public Move GetRandomMove()
@@ -331,11 +342,14 @@ public class Pokemon
             }
         }
 
-        if (VolatileStatus?.OnBeforeMove != null)
-        {   
-            if (!VolatileStatus.OnBeforeMove(this))
+        foreach (var volatileStatus in VolatileStatuses.Values.ToList())
+        {
+            if (volatileStatus.VolatileStatusInfo?.OnBeforeMove != null)
             {
-                canPerformMove = false;
+                if (!volatileStatus.VolatileStatusInfo.OnBeforeMove(this))
+                {
+                    canPerformMove = false;
+                }
             }
         }
 
@@ -353,18 +367,22 @@ public class Pokemon
             conditionResponse.Add(statusResponse);
         }
         
-        var volatileStatusResponse = VolatileStatus?.OnAfterTurn?.Invoke(this);
-
-        if (volatileStatusResponse != null)
+        foreach (var volatileStatus in VolatileStatuses.Values.ToList())
         {
-            conditionResponse.Add(volatileStatusResponse);
+            var volatileStatusResponse = volatileStatus.VolatileStatusInfo?.OnAfterTurn?.Invoke(this);
+
+            if (volatileStatusResponse != null)
+            {
+                conditionResponse.Add(volatileStatusResponse);
+            }
         }
+
         return conditionResponse;
     }
 
     public void OnBattleOver()
     {
-        VolatileStatus = null;
+        CureAllVolatileStatuses();
         ResetStatBoosts();
     }
 }
@@ -373,6 +391,12 @@ public class DamageDetails
 {
     public float Critical { get; set; }
     public float TypeEffectiveness { get; set; }
+}
+
+public class VolatileStatus
+{
+    public Condition VolatileStatusInfo { get; set; }
+    public int VolatileStatusDuration { get; set; }
 }
 
 [System.Serializable]
