@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,15 @@ public class PartyScreen : MonoBehaviour
     
     PartyMemberUI[] memberSlots;
     List<Pokemon> pokemons;
+
+    int currentSelection;
+
+    public Pokemon SelectedMember => pokemons[currentSelection];
+
+    /// <summary>
+    /// Party screen can be called from different states like ActionSelection, RunningTurn, AboutToUse
+    /// </summary>
+    public BattleState? CalledFrom { get; set; }
 
     public void Init()
     {
@@ -32,7 +42,45 @@ public class PartyScreen : MonoBehaviour
             }
         }
 
+        UpdateMemberSelection(currentSelection);
+
         messageText.text = "Choose a Pokemon";
+    }
+
+    public void HandleUpdate(Action onSelected, Action onBack)
+    {
+        var prevSelection = currentSelection;
+        
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            ++currentSelection;
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            --currentSelection;
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            currentSelection += 2;
+        }
+        else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            currentSelection -= 2;
+        }
+
+        currentSelection = Mathf.Clamp(currentSelection, 0, pokemons.Count - 1);
+
+        if (currentSelection != prevSelection)
+            UpdateMemberSelection(currentSelection);
+
+        if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Space) || (Input.GetKeyDown(KeyCode.Return)))
+        {
+            onSelected?.Invoke();
+        }
+        else if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Escape))
+        {
+            onBack?.Invoke();
+        }
     }
 
     public void UpdateMemberSelection(int selectedMember)

@@ -7,9 +7,15 @@ using UnityEngine.UI;
 public class NewMoveSelectionUI : MonoBehaviour
 {
     [SerializeField] List<Text> moveTexts;
-    [SerializeField] Color highlightedColor;
+    
+    Color highlightedColor;
 
     int currentSelection = 0;
+
+    private void Start()
+    {
+        highlightedColor = GlobalSettings.i.HighlightedColor;
+    }
 
     public void SetMoveData(List<MoveBase> currentMoves, MoveBase newMove)
     {

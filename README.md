@@ -10,7 +10,8 @@ Credit to [Game Dev Experiments YouTube Tutorial](https://www.youtube.com/playli
 
 I DO NOT CLAIM ANY SPRITES AS MY OWN. ALL SPRITES BELONG TO POKEMON COMPANY AND ARE USED FOR NON-COMMERCIAL, PERSONAL USE.
 
-As of 10/5/2022, this project has followed along with Game Dev Experiment's tutorial up to and including #40. In addition to this progression, personal TODO's include
+## TODO
+As of 10/7/2022, this project has followed along with Game Dev Experiment's tutorial up to and including #50. In addition to this progression, personal TODO's include
 * Implementing Leech Seed condition
 * ~~Implementing Flinch condition~~ (Implemented 2022/10/5)
 * Expanding pokemon resource universe
@@ -19,3 +20,7 @@ As of 10/5/2022, this project has followed along with Game Dev Experiment's tuto
 * Implementing Pokemon abilities
 * Implementing weather conditions
 * Including Yes/No dialog box for new moves for confirmation
+* Including a settings menu item
+
+## Known Issues
+* Fix bug where two characters can walk through each other if the motion is active before collision detection occurs
