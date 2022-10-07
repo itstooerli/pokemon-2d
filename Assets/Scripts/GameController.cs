@@ -141,6 +141,7 @@ public class GameController : MonoBehaviour
         }
         else if (state == GameState.Menu)
         {
+            playerController.Character.Animator.IsMoving = false; // CUSTOM: Stop character animation when entering menu screen
             menuController.HandleUpdate();
         }
         else if (state == GameState.PartyScreen)
@@ -179,7 +180,7 @@ public class GameController : MonoBehaviour
             // Pokemon
             partyScreen.gameObject.SetActive(true);
             partyScreen.SetPartyData(playerController.GetComponent<PokemonParty>().Pokemons);
-            state = GameState.PartyScreen; 
+            state = GameState.PartyScreen;
             // menuController.CloseMenu(); // CUSTOM EXCLUSION: Allow to go back to menu selection after party screen
         }
         else if (selectedItem == 1)
@@ -195,11 +196,16 @@ public class GameController : MonoBehaviour
         }
         else if (selectedItem == 3)
         {
+            // Load
             SavingSystem.i.Load("SaveSlot1");
             state = GameState.FreeRoam;
             menuController.CloseMenu(); // CUSTOM: Allow to go back to menu selection after party screen
         }
-
-        // Exit
+        else if (selectedItem == 4)
+        {
+            // Exit : CUSTOM: Allow user to close menu without keyboard with this item
+            state = GameState.FreeRoam;
+            menuController.CloseMenu();
+        }
     }
 }

@@ -193,14 +193,15 @@ public class BattleSystem : MonoBehaviour
 
             // First Move
             yield return RunMove(firstUnit, secondUnit, firstUnit.Pokemon.CurrentMove, true);
-            yield return RunAfterTurn(firstUnit);
+            // yield return RunAfterTurn(firstUnit, secondUnit); // CUSTOM: Move RunAfterTurn to after second unit as completed move
             if (state == BattleState.BattleOver) yield break;
 
             if (secondPokemon.HP > 0)
             {
                 // Second Turn
                 yield return RunMove(secondUnit, firstUnit, secondUnit.Pokemon.CurrentMove, false);
-                yield return RunAfterTurn(secondUnit);
+                yield return RunAfterTurn(firstUnit, secondUnit);
+                yield return RunAfterTurn(secondUnit, firstUnit); // CUSTOM: Move RunAfterTurn to after second unit as completed move
                 if (state == BattleState.BattleOver) yield break;
             }
         }
@@ -210,6 +211,7 @@ public class BattleSystem : MonoBehaviour
             {
                 var selectedPokemon = partyScreen.SelectedMember;
                 state = BattleState.Busy;
+                dialogBox.EnableActionSelector(false);
                 yield return SwitchPokemon(selectedPokemon);
             }
             else if (playerAction == BattleAction.UseItem)
@@ -219,13 +221,28 @@ public class BattleSystem : MonoBehaviour
             }
             else if (playerAction == BattleAction.Run)
             {
-                yield return TryToEscape();
+                // CUSTOM?: Disabled action selection window when running
+                dialogBox.EnableActionSelector(false);
+                
+                // CUSTOM: Moved isTrainerBattle condition out of TryToEscape to allow for actionselection and break coroutine
+                // TODO: Could possibly make more efficient as this might stack up coroutines if player hits run too many times
+                if (isTrainerBattle)
+                {
+                    yield return dialogBox.TypeDialog($"You can't run from trainer battles!");
+                    ActionSelection();
+                    yield break;
+                }
+                else
+                {
+                    yield return TryToEscape();
+                }
             }
 
             // Enemy Turn
             var enemyMove = enemyUnit.Pokemon.GetRandomMove();
             yield return RunMove(enemyUnit, playerUnit, enemyMove, false);
-            yield return RunAfterTurn(enemyUnit);
+            yield return RunAfterTurn(playerUnit, enemyUnit); // CUSTOM: Move RunAfterTurn to after second unit as completed move
+            yield return RunAfterTurn(enemyUnit, playerUnit);
             if (state == BattleState.BattleOver) yield break;
         }
 
@@ -326,20 +343,39 @@ public class BattleSystem : MonoBehaviour
         yield return ShowStatusChanges(target);
     }
 
-    IEnumerator RunAfterTurn(BattleUnit sourceUnit)
+    IEnumerator RunAfterTurn(BattleUnit sourceUnit, BattleUnit targetUnit)
     {
         if (state == BattleState.BattleOver) yield break;
         yield return new WaitUntil(() => state == BattleState.RunningTurn);
         
         // Status effects like burn or poison will hurt the pokemon after the turn and could faint
-        sourceUnit.Pokemon.OnAfterTurn();
+        var conditionResponses = sourceUnit.Pokemon.OnAfterTurn();
         yield return ShowStatusChanges(sourceUnit.Pokemon);
         yield return sourceUnit.Hud.UpdateHP();
+
+        if (conditionResponses.Count > 0)
+        {
+            yield return ReactToAfterTurn(targetUnit, conditionResponses);
+        }
 
         if (sourceUnit.Pokemon.HP <= 0)
         {
             yield return HandlePokemonFainted(sourceUnit);
             yield return new WaitUntil(() => state == BattleState.RunningTurn);
+        }
+    }
+
+    IEnumerator ReactToAfterTurn(BattleUnit targetUnit, List<ConditionResponse> conditionResponses)
+    {
+        foreach (var conditionResponse in conditionResponses)
+        {
+            // Leech Seed
+            if (conditionResponse.LeechSeedGain != 0)
+            {
+                yield return dialogBox.TypeDialog($"{targetUnit.Pokemon.Base.Name} was healed by leech seed!");
+                targetUnit.Pokemon.UpdateHP(-conditionResponse.LeechSeedGain);
+                yield return targetUnit.Hud.UpdateHP();
+            }
         }
     }
 
@@ -718,6 +754,8 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator SwitchPokemon(Pokemon newPokemon, bool isTrainerAboutToUse=false)
     {
+        playerUnit.Pokemon.CureVolatileStatus();
+
         if (playerUnit.Pokemon.HP > 0)
         {
             yield return dialogBox.TypeDialog($"Come back {playerUnit.Pokemon.Base.Name}!");
@@ -843,12 +881,17 @@ public class BattleSystem : MonoBehaviour
     {
         state = BattleState.Busy;
 
+        // CUSTOM EXCLUSION: Moved this to RunTurns couroutine before this coroutine is called to
+        // make sure player can still have turn when run is selected. If previous functionality is
+        // desired, uncomment this and remove if statement of if/else in RunTurns Coroutine.
+        /*
         if (isTrainerBattle)
         {
             yield return dialogBox.TypeDialog($"You can't run from trainer battles!");
             state = BattleState.RunningTurn;
             yield break;
         }
+        */
 
         ++escapeAttempts;
 

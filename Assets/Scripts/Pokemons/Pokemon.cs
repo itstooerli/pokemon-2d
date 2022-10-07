@@ -342,10 +342,24 @@ public class Pokemon
         return canPerformMove;
     }
 
-    public void OnAfterTurn()
+    public List<ConditionResponse> OnAfterTurn()
     {
-        Status?.OnAfterTurn?.Invoke(this);
-        VolatileStatus?.OnAfterTurn?.Invoke(this);
+        var conditionResponse = new List<ConditionResponse>();
+
+        var statusResponse = Status?.OnAfterTurn?.Invoke(this);
+
+        if (statusResponse != null)
+        {
+            conditionResponse.Add(statusResponse);
+        }
+        
+        var volatileStatusResponse = VolatileStatus?.OnAfterTurn?.Invoke(this);
+
+        if (volatileStatusResponse != null)
+        {
+            conditionResponse.Add(volatileStatusResponse);
+        }
+        return conditionResponse;
     }
 
     public void OnBattleOver()

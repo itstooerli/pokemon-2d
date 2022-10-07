@@ -19,22 +19,30 @@ public class HPBar : MonoBehaviour
 
     public IEnumerator SetHPSmooth(float newHp)
     {
-        float curHp = health.transform.localScale.x;
-        float changeAmt = curHp - newHp;
-
-        while (curHp - newHp > Mathf.Epsilon)
+        float currHp = health.transform.localScale.x;
+        
+        // CUSTOM: Allow smooth even when adding HP
+        if (currHp > newHp)
         {
-            curHp -= changeAmt * Time.deltaTime;
-            health.transform.localScale = new Vector3(curHp, 1f);
-            yield return null;
+            float changeAmt = currHp - newHp;
+            while (currHp - newHp > Mathf.Epsilon)
+            {
+                currHp -= changeAmt * Time.deltaTime;
+                health.transform.localScale = new Vector3(currHp, 1f);
+                yield return null;
+            }
+        }
+        else
+        {
+            float changeAmt = newHp - currHp;
+            while (newHp - currHp > Mathf.Epsilon)
+            {
+                currHp += changeAmt * Time.deltaTime;
+                health.transform.localScale = new Vector3(currHp, 1f);
+                yield return null;
+            }
         }
 
         health.transform.localScale = new Vector3(newHp, 1f);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

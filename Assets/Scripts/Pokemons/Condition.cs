@@ -12,5 +12,13 @@ public class Condition
 
     public Action<Pokemon> OnStart { get; set; }
     public Func<Pokemon, bool> OnBeforeMove { get; set; }
-    public Action<Pokemon> OnAfterTurn { get; set; }
+    public Func<Pokemon, ConditionResponse> OnAfterTurn { get; set; }
+}
+
+/// <summary>
+///  CUSTOM: Included class to accommodate responses to source based on target condition, such as leech seed
+/// </summary>
+public class ConditionResponse
+{
+    public int LeechSeedGain { get; set; } = 0;
 }

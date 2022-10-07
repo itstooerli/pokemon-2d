@@ -34,7 +34,6 @@ public class BattleDialogBox : MonoBehaviour
         dialogText.text = dialog;
     }
     
-    // Type the dialog, 30 letters per 1 second
     public IEnumerator TypeDialog(string dialog)
     {
         dialogText.text = "";

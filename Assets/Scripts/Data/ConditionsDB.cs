@@ -25,6 +25,7 @@ public class ConditionsDB
                     {
                         pokemon.UpdateHP(pokemon.MaxHp / 8);
                         pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is hurt by poison!");
+                        return null; // No response to source
                     }
             } 
         },
@@ -37,6 +38,7 @@ public class ConditionsDB
                     {
                         pokemon.UpdateHP(pokemon.MaxHp / 16);
                         pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is hurt by its burn!");
+                        return null; // No response to source
                     }
             }
         },
@@ -139,7 +141,8 @@ public class ConditionsDB
             }
         },
 
-        // CUSTOM: Added new input bool for IsFirstUnit to accommodate flinch, etc.
+        // CUSTOM: IsFirstUnit is checked before calling this, specifically in RunMoveEffects, specifically for Flinch
+        // May need to be refactored in the future
         {ConditionID.flinch, new Condition()
             {
                 Name = "Flinch",
@@ -150,6 +153,27 @@ public class ConditionsDB
                         return false;
                     },
             }
+        },
+
+        {ConditionID.leechSeed, new Condition()
+            {
+                Name = "Leech Seed",
+                StartMessage = "was affected by leech seed",
+                OnAfterTurn = (Pokemon pokemon) =>
+                    {
+                        // Drain HP
+                        int drainAmount = pokemon.MaxHp / 8;
+                        pokemon.UpdateHP(drainAmount);
+                        pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name}'s health was absorbed by leech seed!");
+
+                        // Give HP
+                        var conditionResponse = new ConditionResponse();
+                        conditionResponse.LeechSeedGain = drainAmount;
+
+                        return conditionResponse;
+                    }
+
+            } 
         },
     };
 
@@ -182,4 +206,5 @@ public enum ConditionID
     frz,
     confusion,
     flinch,
+    leechSeed,
 }

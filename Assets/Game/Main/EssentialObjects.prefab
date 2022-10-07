@@ -1019,7 +1019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ee29d7066c04784e98a77e1c3cbb243, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lettersPerSecond: 30
+  lettersPerSecond: 40
   dialogText: {fileID: 8268805463891352531}
   actionSelector: {fileID: 8268805462395472120}
   moveSelector: {fileID: 8268805463185574265}
