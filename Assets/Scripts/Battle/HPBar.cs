@@ -5,12 +5,8 @@ using UnityEngine;
 public class HPBar : MonoBehaviour
 {
     [SerializeField] GameObject health;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
+    public bool IsUpdating { get; private set; }
 
     public void SetHP(float hpNormalized)
     {
@@ -19,6 +15,7 @@ public class HPBar : MonoBehaviour
 
     public IEnumerator SetHPSmooth(float newHp)
     {
+        IsUpdating = true;
         float currHp = health.transform.localScale.x;
         
         // CUSTOM: Allow smooth even when adding HP
@@ -44,5 +41,7 @@ public class HPBar : MonoBehaviour
         }
 
         health.transform.localScale = new Vector3(newHp, 1f);
+        
+        IsUpdating = false;
     }
 }

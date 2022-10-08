@@ -23,7 +23,7 @@ public class ConditionsDB
                 StartMessage = "has been poisoned",
                 OnAfterTurn = (Pokemon pokemon) => 
                     {
-                        pokemon.UpdateHP(pokemon.MaxHp / 8);
+                        pokemon.DecreaseHP(pokemon.MaxHp / 8);
                         pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is hurt by poison!");
                         return null; // No response to source
                     }
@@ -36,7 +36,7 @@ public class ConditionsDB
                 StartMessage = "has been burned",
                 OnAfterTurn = (Pokemon pokemon) =>
                     {
-                        pokemon.UpdateHP(pokemon.MaxHp / 16);
+                        pokemon.DecreaseHP(pokemon.MaxHp / 16);
                         pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is hurt by its burn!");
                         return null; // No response to source
                     }
@@ -134,7 +134,7 @@ public class ConditionsDB
                         }
 
                         // Hurt by confusion
-                        pokemon.UpdateHP(pokemon.MaxHp / 8);
+                        pokemon.DecreaseHP(pokemon.MaxHp / 8);
                         pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} hurt itself in its confusion!");
                         return false;
                     }
@@ -163,7 +163,7 @@ public class ConditionsDB
                     {
                         // Drain HP
                         int drainAmount = pokemon.MaxHp / 8;
-                        pokemon.UpdateHP(drainAmount);
+                        pokemon.DecreaseHP(drainAmount);
                         pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name}'s health was absorbed by leech seed!");
 
                         // Give HP

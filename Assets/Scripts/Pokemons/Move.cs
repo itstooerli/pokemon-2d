@@ -30,6 +30,11 @@ public class Move
         return saveData;
     }
 
+    public void IncreasePP(int amount)
+    {
+        Pp = Mathf.Clamp(Pp + amount, 0, Base.Pp);
+    }
+
 }
 
 [System.Serializable]

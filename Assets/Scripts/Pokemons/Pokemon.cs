@@ -47,8 +47,8 @@ public class Pokemon
     public Dictionary<ConditionID, VolatileStatus> VolatileStatuses { get; private set; } // ConditionID : {Condition, Duration}
 
     public Queue<string> StatusChanges { get; private set; }
-    public bool HpChanged { get; set; }
     public event System.Action OnStatusChanged;
+    public event System.Action OnHPChanged;
 
     public void Init()
     {
@@ -214,8 +214,8 @@ public class Pokemon
     {
         var oldMaxHp = MaxHp;
         CalculateStats(); // Increase stats
-        var diff = MaxHp - oldMaxHp;
-        UpdateHP(-diff); // Increase HP based on gain
+        var hpGain = MaxHp - oldMaxHp;
+        IncreaseHP(hpGain); // Increase HP based on gain
     }
 
     public int Attack
@@ -272,15 +272,21 @@ public class Pokemon
         float d = a * move.Base.Power * ((float)attack / defense) + 2;
         int damage = Mathf.FloorToInt(d * modifiers);
 
-        UpdateHP(damage);
+        DecreaseHP(damage);
 
         return damageDetails;
     }
 
-    public void UpdateHP(int damage)
+    public void DecreaseHP(int damage)
     {
         HP = Mathf.Clamp(HP - damage, 0, MaxHp);
-        HpChanged = true;
+        OnHPChanged?.Invoke();
+    }
+
+    public void IncreaseHP(int amount)
+    {
+        HP = Mathf.Clamp(HP + amount, 0, MaxHp);
+        OnHPChanged?.Invoke();
     }
 
     public void SetStatus(ConditionID conditionId)

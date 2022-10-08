@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-public enum BattleState { Start, ActionSelection, MoveSelection, RunningTurn, Busy, PartyScreen, AboutToUse, MoveToForget, BattleOver }
+public enum BattleState { Start, ActionSelection, MoveSelection, RunningTurn, Busy, Bag, PartyScreen, AboutToUse, MoveToForget, BattleOver }
 public enum BattleAction { Move, SwitchPokemon, UseItem, Run }
 
 public class BattleSystem : MonoBehaviour
@@ -19,7 +19,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] Image trainerImage;
     [SerializeField] GameObject pokeballPrefab;
     [SerializeField] NewMoveSelectionUI newMoveSelectionUI;
-
+    [SerializeField] InventoryUI inventoryUI;
 
     public event Action<bool> OnBattleOver;
 
@@ -127,11 +127,16 @@ public class BattleSystem : MonoBehaviour
         dialogBox.EnableActionSelector(true);
     }
 
-    void OpenPartyScreen()
+    void OpenBag()
     {
+        state = BattleState.Bag;
+        inventoryUI.gameObject.SetActive(true);
+    }
+
+    void OpenPartyScreen()
+    { 
         partyScreen.CalledFrom = state;
         state = BattleState.PartyScreen;
-        partyScreen.SetPartyData(playerParty.Pokemons);
         partyScreen.gameObject.SetActive(true);
     }
 
@@ -216,8 +221,9 @@ public class BattleSystem : MonoBehaviour
             }
             else if (playerAction == BattleAction.UseItem)
             {
+                // Use Item is handled from the item screen, so do nothing and skip to enemy turn
                 dialogBox.EnableActionSelector(false);
-                yield return ThrowPokeball();
+                // yield return ThrowPokeball();
             }
             else if (playerAction == BattleAction.Run)
             {
@@ -259,7 +265,8 @@ public class BattleSystem : MonoBehaviour
         if (!canRunMove)
         {
             yield return ShowStatusChanges(sourceUnit.Pokemon);
-            yield return sourceUnit.Hud.UpdateHP();
+            // yield return sourceUnit.Hud.UpdateHPAsync();
+            yield return sourceUnit.Hud.WaitForHPUpdate();
             yield break;
         }
         yield return ShowStatusChanges(sourceUnit.Pokemon);
@@ -282,7 +289,8 @@ public class BattleSystem : MonoBehaviour
             else
             {
                 var damageDetails = targetUnit.Pokemon.TakeDamage(move, sourceUnit.Pokemon);
-                yield return targetUnit.Hud.UpdateHP();
+                // yield return targetUnit.Hud.UpdateHPAsync();
+                yield return targetUnit.Hud.WaitForHPUpdate();
                 yield return ShowDamageDetails(damageDetails);
             }
 
@@ -351,7 +359,8 @@ public class BattleSystem : MonoBehaviour
         // Status effects like burn or poison will hurt the pokemon after the turn and could faint
         var conditionResponses = sourceUnit.Pokemon.OnAfterTurn();
         yield return ShowStatusChanges(sourceUnit.Pokemon);
-        yield return sourceUnit.Hud.UpdateHP();
+        yield return sourceUnit.Hud.WaitForHPUpdate();
+        // yield return sourceUnit.Hud.UpdateHPAsync();
 
         if (conditionResponses.Count > 0)
         {
@@ -373,8 +382,9 @@ public class BattleSystem : MonoBehaviour
             if (conditionResponse.LeechSeedGain != 0)
             {
                 yield return dialogBox.TypeDialog($"{targetUnit.Pokemon.Base.Name} was healed by leech seed!");
-                targetUnit.Pokemon.UpdateHP(-conditionResponse.LeechSeedGain);
-                yield return targetUnit.Hud.UpdateHP();
+                targetUnit.Pokemon.IncreaseHP(conditionResponse.LeechSeedGain);
+                yield return targetUnit.Hud.WaitForHPUpdate();
+                // yield return targetUnit.Hud.UpdateHPAsync();
             }
         }
     }
@@ -471,7 +481,8 @@ public class BattleSystem : MonoBehaviour
                 }
 
                 yield return playerUnit.Hud.SetExpSmooth(true);
-                yield return playerUnit.Hud.UpdateHP();
+                // yield return playerUnit.Hud.UpdateHPAsync();
+                yield return playerUnit.Hud.WaitForHPUpdate();
             }
             
             yield return new WaitForSeconds(1f); // Wait for animations to finish
@@ -550,6 +561,23 @@ public class BattleSystem : MonoBehaviour
         {
             HandlePartySelection();
         }
+        else if (state == BattleState.Bag)
+        {
+            Action onBack = () =>
+            {
+                inventoryUI.gameObject.SetActive(false);
+                state = BattleState.ActionSelection;
+            };
+
+            Action onItemUsed = () =>
+            {
+                state = BattleState.Busy;
+                inventoryUI.gameObject.SetActive(false);
+                StartCoroutine(RunTurns(BattleAction.UseItem));
+            };
+
+            inventoryUI.HandleUpdate(onBack, onItemUsed);
+        }
         else if (state == BattleState.AboutToUse)
         {
             HandleAboutToUse();
@@ -611,7 +639,8 @@ public class BattleSystem : MonoBehaviour
             }
             else if (currentAction == 1) {
                 // Bag
-                StartCoroutine(RunTurns(BattleAction.UseItem));
+                // StartCoroutine(RunTurns(BattleAction.UseItem));
+                OpenBag();
             }
             else if (currentAction == 2)
             {

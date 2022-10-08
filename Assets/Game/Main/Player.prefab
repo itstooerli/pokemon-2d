@@ -201,12 +201,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pokemons:
+  - _base: {fileID: 11400000, guid: 630153c8f25a4ee499235c2a3618df73, type: 2}
+    level: 1
   - _base: {fileID: 11400000, guid: 6ec6b259fec2cb145b9c4499c27e054b, type: 2}
     level: 10
   - _base: {fileID: 11400000, guid: 6a1da40645e529a4ab38722bcea3bfd7, type: 2}
     level: 11
-  - _base: {fileID: 11400000, guid: 630153c8f25a4ee499235c2a3618df73, type: 2}
-    level: 7
   - _base: {fileID: 11400000, guid: 4715e7d154289d5439c0ba162a491dd6, type: 2}
     level: 12
 --- !u!114 &8675864951819051671

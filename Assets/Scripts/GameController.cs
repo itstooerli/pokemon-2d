@@ -30,8 +30,8 @@ public class GameController : MonoBehaviour
         menuController = GetComponent<MenuController>();
 
         // Disabling mouse in game
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        // Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
 
         ConditionsDB.Init();
         PokemonDB.Init();
@@ -209,7 +209,6 @@ public class GameController : MonoBehaviour
         {
             // Pokemon
             partyScreen.gameObject.SetActive(true);
-            partyScreen.SetPartyData(playerController.GetComponent<PokemonParty>().Pokemons);
             state = GameState.PartyScreen;
             // menuController.CloseMenu(); // CUSTOM EXCLUSION: Allow to go back to menu selection after party screen
         }
