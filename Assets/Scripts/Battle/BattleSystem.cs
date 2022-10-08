@@ -199,12 +199,15 @@ public class BattleSystem : MonoBehaviour
             // First Move
             yield return RunMove(firstUnit, secondUnit, firstUnit.Pokemon.CurrentMove, true);
             // yield return RunAfterTurn(firstUnit, secondUnit); // CUSTOM: Move RunAfterTurn to after second unit as completed move
+            yield return new WaitUntil(() => state == BattleState.RunningTurn); // CUSTOM: Still need to wait for running turn in case pokemon faints
             if (state == BattleState.BattleOver) yield break;
 
             if (secondPokemon.HP > 0)
             {
-                // Second Turn
+                // Second Move
                 yield return RunMove(secondUnit, firstUnit, secondUnit.Pokemon.CurrentMove, false);
+                // yield return RunAfterMove(secondUnit); // CUSTOM
+                yield return new WaitUntil(() => state == BattleState.RunningTurn); // CUSTOM: Still need to wait for running turn in case pokemon faints
                 yield return RunAfterTurn(firstUnit, secondUnit);
                 yield return RunAfterTurn(secondUnit, firstUnit); // CUSTOM: Move RunAfterTurn to after second unit as completed move
                 if (state == BattleState.BattleOver) yield break;
