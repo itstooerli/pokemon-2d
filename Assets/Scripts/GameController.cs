@@ -239,4 +239,11 @@ public class GameController : MonoBehaviour
             menuController.CloseMenu();
         }
     }
+
+    public bool IsTrainerBattle()
+    {
+        return battleSystem.IsTrainerBattle;
+    }
+
+    public GameState State => state;
 }

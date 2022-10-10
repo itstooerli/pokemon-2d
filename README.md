@@ -12,7 +12,7 @@ of training, catching pokemon and eventually implementing a consecutive battle c
 I DO NOT CLAIM ANY SPRITES AS MY OWN. ALL SPRITES BELONG TO POKEMON COMPANY AND ARE USED FOR NON-COMMERCIAL, PERSONAL USE.
 
 ## TODO
-As of 10/7/2022, this project has followed along with Game Dev Experiment's tutorial up to and including #51. In addition to this progression, personal TODO's include
+As of 10/7/2022, this project has followed along with Game Dev Experiment's tutorial up to and including #61. In addition to this progression, personal TODO's include
 * ~~Implementing Flinch condition~~ (Implemented 2022/10/5)
 * ~~Implementing Leech Seed condition~~ (Implemented 2022/10/7)
 * ~~Update volatile effects to allow to be affected together like leech seed and confusion~~ (Implemented 2022/10/7)
@@ -22,6 +22,8 @@ As of 10/7/2022, this project has followed along with Game Dev Experiment's tuto
 * Including a settings menu item
 * Update opponent pokemon move loader logic
 * Baby Maker (No eggs, but transform current pokemon into a level 1 version of either itself or it's lowest evolution)
+* Update TM Party Screen UI to leverage colors instead of text (TBD)
+* Make a smooth update for HP bar when item used in party screen
 
 ## Pokemon Universe Resource Expansion
 * Caterpie (2022/10/7)
@@ -45,11 +47,19 @@ As of 10/7/2022, this project has followed along with Game Dev Experiment's tuto
 
 ## Known Issues
 * Fix bug where two characters can walk through each other if the motion is active before collision detection occurs
+* ~~Fix bug where action selection box is still active when using a pokeball (and possibly item)~~ (Fixed 2022/10/10)
+* ~~Fix bug where using a pokeball during a trainer battle decrements the pokeball count and skips to the opponents turn~~ (Fixed 2022/10/10)
+* ~~Fix bug where spamming continue key upon learning TM move creates and error~~ (2022/10/10: possibly fixed, unable to recreate issue)
+* Fix bug where player cannot cancel out of TM learn move state (with escape key) (2022/10/10: Deemed Low Priority since player can select the new move to cancel out, would want to allow escape key to leave as well though)
+* ~~Fix bug where the name of TMs (possibly items in general) are cut off in bag~~ (Fixed 2022/10/10)
+* Fix bug where TMs are not sorted by name (currently via pickup)
 
 ## Known Inconsistencies with Pokemon Games
 * ~~Fix where statuses should be checked after all moves are completed~~ (Fixed 2022/10/7)
 * ~~Fix where volatile status conditions should be cleared when switching pokemon~~ (Fixed 2022/10/7)
 
+## Maintained Discrepancies
+* As with new version of the games, there will be no HMs. TMs will also be reusable.
 
 ## Planning
 

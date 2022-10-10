@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 958ccb63ccd0bf0409b717d8405e31f4, type: 3}
+  m_Name: TM00
+  m_EditorClassIdentifier: 
+  name: TM00
+  description: Teaches a Pokemon Dragon Breath
+  icon: {fileID: -3727842135710763035, guid: 3ae12697ae504414bbf0797ea36dfddd, type: 3}
+  move: {fileID: 11400000, guid: 928410a9e74d67142b043bb011047ce7, type: 2}

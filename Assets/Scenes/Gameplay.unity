@@ -1960,6 +1960,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6479357558946533833, guid: 6894d1af93e171046a7fdd0833e0308b, type: 3}
+      propertyPath: tmSlots.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479357558946533833, guid: 6894d1af93e171046a7fdd0833e0308b, type: 3}
+      propertyPath: tmSlots.Array.data[0].item
+      value: 
+      objectReference: {fileID: 11400000, guid: 6662d4943a968d746b8722ad03d8b492, type: 2}
+    - target: {fileID: 6479357558946533833, guid: 6894d1af93e171046a7fdd0833e0308b, type: 3}
+      propertyPath: tmSlots.Array.data[1].item
+      value: 
+      objectReference: {fileID: 11400000, guid: 1d68c7b4c5d6020449c08a89f7b5776b, type: 2}
+    - target: {fileID: 6479357558946533833, guid: 6894d1af93e171046a7fdd0833e0308b, type: 3}
+      propertyPath: tmSlots.Array.data[0].count
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479357558946533833, guid: 6894d1af93e171046a7fdd0833e0308b, type: 3}
+      propertyPath: tmSlots.Array.data[1].count
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6573034450994304685, guid: 6894d1af93e171046a7fdd0833e0308b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2455,6 +2475,10 @@ PrefabInstance:
     - target: {fileID: 8268805462464434591, guid: 6894d1af93e171046a7fdd0833e0308b, type: 3}
       propertyPath: m_Name
       value: EssentialObjects
+      objectReference: {fileID: 0}
+    - target: {fileID: 8268805462653165777, guid: 6894d1af93e171046a7fdd0833e0308b, type: 3}
+      propertyPath: pokemons.Array.data[0].level
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8268805463616867313, guid: 6894d1af93e171046a7fdd0833e0308b, type: 3}
       propertyPath: m_Name
@@ -2974,8 +2998,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wildPokemons:
-  - _base: {fileID: 11400000, guid: 4715e7d154289d5439c0ba162a491dd6, type: 2}
-    level: 49
+  - _base: {fileID: 11400000, guid: 6a1da40645e529a4ab38722bcea3bfd7, type: 2}
+    level: 5
 --- !u!1001 &2075234284
 PrefabInstance:
   m_ObjectHideFlags: 0

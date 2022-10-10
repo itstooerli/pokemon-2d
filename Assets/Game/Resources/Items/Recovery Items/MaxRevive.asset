@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Max Revive
   description: Revives a fainted pokemon
-  icon: {fileID: 8516207914135374630, guid: 10810de0898aef84db01bad7396bf76e, type: 3}
+  icon: {fileID: -2809395180699245539, guid: 10810de0898aef84db01bad7396bf76e, type: 3}
   hpAmount: 0
   restoreMaxHP: 0
   ppAmount: 0
   restoreMaxPP: 0
   status: 0
   recoverAllStatus: 0
-  revive: 1
-  maxRevive: 0
+  revive: 0
+  maxRevive: 1
