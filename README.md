@@ -2,8 +2,14 @@
 
 This repository and README is currently under construction.
 
-The goal of this project is to make a playable Pokemon-style game that speeds the process
-of training, catching pokemon and eventually implementing a consecutive battle challenge.
+## Introduction
+The goal of this project is to make a playable Pokemon-style game that allows people to be exposed to the variety of pokemon more quickly and hopefully speeds the process of training, catching pokemon. This will then lead to a difficult a battle challenge.
+
+This is an example of the environment.
+![Home Screen](images/pokemon-home-scene.png)
+
+This is an example of the battle system.
+![Battle Screen](images/pokemon-battle-screen.png)
 
 ## Acknowledgements
 * Much credit to [Game Dev Experiments YouTube Tutorial](https://www.youtube.com/playlist?list=PLLf84Zj7U26kfPQ00JVI2nIoozuPkykDX) for in depth tutorials
@@ -11,13 +17,13 @@ of training, catching pokemon and eventually implementing a consecutive battle c
 
 I DO NOT CLAIM ANY SPRITES AS MY OWN. ALL SPRITES BELONG TO POKEMON COMPANY AND ARE USED FOR NON-COMMERCIAL, PERSONAL USE.
 
-## TODO
+## Next Steps
 As of 10/11/2022, this project has followed along with Game Dev Experiment's tutorial up to and including #63.
 * ~~Implementing Flinch condition~~ (Implemented 2022/10/5)
 * ~~Implementing Leech Seed condition~~ (Implemented 2022/10/7)
 * ~~Update volatile effects to allow to be affected together like leech seed and confusion~~ (Implemented 2022/10/7)
-* Refactor dialogue system (Expected 2022/10/12)
-* Add item pickup and NPC giving items (Expected 2022/10/12)
+* ~~Refactor dialogue system (Expected 2022/10/12)~~ (Implemented 2022/10/11)
+* ~~Add item pickup and NPC giving items (Expected 2022/10/12)~~ (Implemented 2022/10/11)
 * Allow items to be saved (Expected 2022/10/13)
 * Implement quest system (Expected 2022/10/14)
 * Implement pokemon evolutions (Expected 2022/10/15)
@@ -68,7 +74,7 @@ As of 10/11/2022, this project has followed along with Game Dev Experiment's tut
 ## Maintained Discrepancies
 * As with new version of the games, there will be no HMs. TMs will also be reusable.
 
-## Planning
+## World Planning
 1. Generation 1 Home - Starter Pokemon
     * Tier 1 Wild Pokemon, e.g. Caterpie, Pidgey
     * Includes healer and shop
@@ -93,3 +99,7 @@ As of 10/11/2022, this project has followed along with Game Dev Experiment's tut
 7. Generation 2 Safari
 8. Generation 2 Tier 2 Battle Tower
 9. Generation 3 Home - Starter Pokemon
+10. ...
+
+## Author(s)
+* Primary Contributor(s): Eric Li

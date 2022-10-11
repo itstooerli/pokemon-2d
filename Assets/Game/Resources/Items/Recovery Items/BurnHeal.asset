@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6e41f80d5b31244a88b81c14f58ed6c, type: 3}
   m_Name: BurnHeal
   m_EditorClassIdentifier: 
-  name: Paralyze Heal
+  name: Burn Heal
   description: Cures a Pokemon that has been paralyzed
   icon: {fileID: -137334465160226636, guid: 10810de0898aef84db01bad7396bf76e, type: 3}
   hpAmount: 0
