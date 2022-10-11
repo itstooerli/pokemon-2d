@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameState { FreeRoam, Battle, Dialog, Menu, PartyScreen, Bag, Cutscene, Paused }
+public enum GameState { FreeRoam, Battle, Dialog, Menu, PartyScreen, MiniPartyMenu, SwapPartyPokemon, Bag, Cutscene, Paused }
 
 public class GameController : MonoBehaviour
 {
@@ -62,6 +62,8 @@ public class GameController : MonoBehaviour
         };
 
         menuController.onMenuSelected += OnMenuSelected;
+
+        partyScreen.onMiniMenuSelected += OnMiniMenuSelected;
     }
     
     public void PauseGame(bool pause)
@@ -154,6 +156,8 @@ public class GameController : MonoBehaviour
             Action onSelected = () =>
             {
                 // Go to Summary Screen?
+                state = GameState.MiniPartyMenu;
+                partyScreen.OpenMiniMenu();
             };
 
             Action onBack = () =>
@@ -183,6 +187,27 @@ public class GameController : MonoBehaviour
             };
 
             inventoryUI.HandleUpdate(onBack);
+        }
+        else if (state == GameState.MiniPartyMenu)
+        {
+            Action onBack = () =>
+            {
+                partyScreen.CloseMiniMenu();
+                state = GameState.PartyScreen;
+            };
+
+            partyScreen.HandlePokemonSelection(onBack);
+        }
+        else if (state == GameState.SwapPartyPokemon)
+        {
+            Action onBack = () =>
+            {
+                partyScreen.ResetMessageText();
+                state = GameState.PartyScreen;
+            };
+
+            partyScreen.UpdateMessageTextUponSwapping();
+            partyScreen.HandleSwapPartyPokemon(onBack);
         }
     }
 
@@ -237,6 +262,38 @@ public class GameController : MonoBehaviour
             // Exit : CUSTOM: Allow user to close menu without keyboard with this item
             state = GameState.FreeRoam;
             menuController.CloseMenu();
+        }
+    }
+
+
+    void OnMiniMenuSelected(int selectedItem)
+    {
+        if (selectedItem == 0)
+        {
+            // Switch
+            state = GameState.SwapPartyPokemon;
+            partyScreen.CloseMiniMenu();
+            // partyScreen.gameObject.SetActive(true);
+            // state = GameState.PartyScreen;
+            // menuController.CloseMenu(); // CUSTOM EXCLUSION: Allow to go back to menu selection after party screen
+        }
+        else if (selectedItem == 1)
+        {
+            // Summary
+            state = GameState.PartyScreen;
+            partyScreen.CloseMiniMenu();
+        }
+        else if (selectedItem == 2)
+        {
+            // Item
+            state = GameState.PartyScreen;
+            partyScreen.CloseMiniMenu();
+        }
+        else if (selectedItem == 3)
+        {
+            // Close Menu
+            state = GameState.PartyScreen;
+            partyScreen.CloseMiniMenu();
         }
     }
 

@@ -52,4 +52,12 @@ public class PokemonParty : MonoBehaviour
     {
        return FindObjectOfType<PlayerController>().GetComponent<PokemonParty>();
     }
+
+    public void SwapPokemonInParty(int firstMember, int secondMember)
+    {
+        var temp = pokemons[firstMember];
+        pokemons[firstMember] = pokemons[secondMember];
+        pokemons[secondMember] = temp;
+        OnUpdated?.Invoke();
+    }
 }

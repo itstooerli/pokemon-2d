@@ -12,18 +12,25 @@ of training, catching pokemon and eventually implementing a consecutive battle c
 I DO NOT CLAIM ANY SPRITES AS MY OWN. ALL SPRITES BELONG TO POKEMON COMPANY AND ARE USED FOR NON-COMMERCIAL, PERSONAL USE.
 
 ## TODO
-As of 10/7/2022, this project has followed along with Game Dev Experiment's tutorial up to and including #61. In addition to this progression, personal TODO's include
+As of 10/11/2022, this project has followed along with Game Dev Experiment's tutorial up to and including #63.
 * ~~Implementing Flinch condition~~ (Implemented 2022/10/5)
 * ~~Implementing Leech Seed condition~~ (Implemented 2022/10/7)
 * ~~Update volatile effects to allow to be affected together like leech seed and confusion~~ (Implemented 2022/10/7)
-* Implementing Pokemon abilities
-* Implementing weather conditions
-* Including Yes/No dialog box for new moves for confirmation
-* Including a settings menu item
-* Update opponent pokemon move loader logic
-* Baby Maker (No eggs, but transform current pokemon into a level 1 version of either itself or it's lowest evolution)
+* Refactor dialogue system (Expected 2022/10/12)
+* Add item pickup and NPC giving items (Expected 2022/10/12)
+* Allow items to be saved (Expected 2022/10/13)
+* Implement quest system (Expected 2022/10/14)
+* Implement pokemon evolutions (Expected 2022/10/15)
+* Implement healing and shops (Expected 2022/10/16)
+* Implement pokemon storage (Expected 2022/10/17)
+* Implementing Pokemon abilities (Expected 2022/10/18)
+* Implementing weather conditions (Expected 2022/10/18)
+* Including Yes/No dialog box for new moves for confirmation (TBD)
+* Including a settings menu item (TBD)
+* Update opponent pokemon move loader logic (TBD)
+* Baby Maker (No eggs, but transform current pokemon into a level 1 version of either itself or it's lowest evolution) (TBD)
 * Update TM Party Screen UI to leverage colors instead of text (TBD)
-* Make a smooth update for HP bar when item used in party screen
+* Make a smooth update for HP bar when item used in party screen (TBD)
 
 ## Pokemon Universe Resource Expansion
 * Caterpie (2022/10/7)
@@ -52,28 +59,37 @@ As of 10/7/2022, this project has followed along with Game Dev Experiment's tuto
 * ~~Fix bug where spamming continue key upon learning TM move creates and error~~ (2022/10/10: possibly fixed, unable to recreate issue)
 * Fix bug where player cannot cancel out of TM learn move state (with escape key) (2022/10/10: Deemed Low Priority since player can select the new move to cancel out, would want to allow escape key to leave as well though)
 * ~~Fix bug where the name of TMs (possibly items in general) are cut off in bag~~ (Fixed 2022/10/10)
-* Fix bug where TMs are not sorted by name (currently via pickup)
 
 ## Known Inconsistencies with Pokemon Games
 * ~~Fix where statuses should be checked after all moves are completed~~ (Fixed 2022/10/7)
 * ~~Fix where volatile status conditions should be cleared when switching pokemon~~ (Fixed 2022/10/7)
+* Fix where TMs are not sorted by name (currently via pickup) (deal with this upon implementing pickup)
 
 ## Maintained Discrepancies
 * As with new version of the games, there will be no HMs. TMs will also be reusable.
 
 ## Planning
-
 1. Generation 1 Home - Starter Pokemon
-2. Generation 1 Safari : Maybe catch one of each to improve catch rate?
-    * Maybe break into 3 tiers
-    * Tier 1 - Easy pokemon - Ex: Weedle, Pidgey
-    * Tier 2 - Medium pokemon - Ex: Lapars, Dratini
-    * Tier 3 - Legendary pokemon - Ex: Mewtwo, Zapdos
-3. Generation 1 Battle Tower : 50? trainers
-    * Maybe break the safari into 3 battle towers based on the 3 tiers
-4. Generation 2 Home - Starter Pokemon : Decide what to do with gen 1 pokemon
-4. Generation 2 Safari
-5. Generation 2 Battle Tower : 50? trainers
-6. Generation 3 Home - Starter Pokemon
-7. Generation 3 Safari
-8. Generation 3 Battle Tower
+    * Tier 1 Wild Pokemon, e.g. Caterpie, Pidgey
+    * Includes healer and shop
+2. Generation 1 Tier 1 Battle Tower
+    * 10 trainers
+    * Player party healed after every battle
+    * Player gains money upon each win
+    * Player loses money upon each loss
+    * Trainer party levels will be the max of the player party's level or 10(?)
+    * 10 consecutive wins unlocks next area
+3. Generation 1 Safari
+    * All remaining pokemon, e.g. Lapras, Dratini
+    * Legendary pokemon with reduced spawn rate, e.g. Mewtwo, Zapdos
+4. Generation 1 Tier 2 Battle Tower
+    * 20 trainers consecutive
+    * Rest is same as generation 1
+5. Generation 2 Home - Starter Pokemon
+    * Begin same concept for generation 1
+    * Player resets but can return to play more generation 1 if desired
+    * How to handle evolutions across multiple generations then? (TBD)
+6. Generation 2 Tier 1 Battle Tower
+7. Generation 2 Safari
+8. Generation 2 Tier 2 Battle Tower
+9. Generation 3 Home - Starter Pokemon
