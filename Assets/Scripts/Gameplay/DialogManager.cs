@@ -24,6 +24,7 @@ public class DialogManager : MonoBehaviour
 
     public IEnumerator ShowDialogText(string text, bool waitForInput=true, bool autoClose=true)
     {
+        OnShowDialog?.Invoke();
         IsShowing = true;
         dialogBox.SetActive(true);
         yield return TypeDialog(text);
@@ -43,6 +44,7 @@ public class DialogManager : MonoBehaviour
     {
         dialogBox.SetActive(false);
         IsShowing = false;
+        OnCloseDialog?.Invoke();
     }
 
     public IEnumerator ShowDialog(Dialog dialog)
