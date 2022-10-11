@@ -45,11 +45,11 @@ public class PlayerController : MonoBehaviour, ISavable
 
         if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Space))
         {
-            Interact();
+            StartCoroutine(Interact());
         }
     }
 
-    void Interact()
+    IEnumerator Interact()
     {
         var facingDir = new Vector3(character.Animator.MoveX, character.Animator.MoveY); // Direction that player is facing
         var interactPos = transform.position + facingDir;
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour, ISavable
         if (collider != null)
         {
             character.Animator.IsMoving = false; // CUSTOM: Fix to stop moving animation when interacting with something
-            collider.GetComponent<Interactable>()?.Interact(transform);
+            yield return collider.GetComponent<Interactable>()?.Interact(transform);
         }
     }
 
