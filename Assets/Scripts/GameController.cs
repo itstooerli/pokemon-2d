@@ -36,6 +36,7 @@ public class GameController : MonoBehaviour
         ConditionsDB.Init();
         PokemonDB.Init();
         MoveDB.Init();
+        ItemDB.Init();
     }
 
     // Start is called before the first frame update
@@ -51,7 +52,7 @@ public class GameController : MonoBehaviour
             state = GameState.Dialog;
         };
 
-        DialogManager.Instance.OnCloseDialog += () =>
+        DialogManager.Instance.OnDialogFinished += () =>
         {
             if (state == GameState.Dialog)
                 state = prevState;

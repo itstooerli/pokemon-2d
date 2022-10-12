@@ -16,7 +16,7 @@ public class MoveDB
         {
             if (moves.ContainsKey(move.Name))
             {
-                Debug.LogError($"There are two pokemons with the name {move.Name}");
+                Debug.LogError($"There are two moves with the name {move.Name}");
                 continue;
             }
             moves[move.Name] = move;
@@ -27,7 +27,7 @@ public class MoveDB
     {
         if (!moves.ContainsKey(name))
         {
-            Debug.LogError($"Pokemon with name {name} not found in the database.");
+            Debug.LogError($"Move with name {name} not found in the database.");
             return null;
         }
 

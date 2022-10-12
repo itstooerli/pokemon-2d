@@ -6,7 +6,7 @@ using UnityEngine;
 
 public enum ItemCategory { Items, Pokeballs, Tms }
 
-public class Inventory : MonoBehaviour
+public class Inventory : MonoBehaviour, ISavable
 {
     [SerializeField] List<ItemSlot> slots;
     [SerializeField] List<ItemSlot> pokeballSlots;
@@ -109,13 +109,56 @@ public class Inventory : MonoBehaviour
 
         return ItemCategory.Items;
     }
+
+    public object CaptureState()
+    {
+        var saveData = new InventorySaveData()
+        {
+            items = slots.Select(i => i.GetSaveData()).ToList(),
+            pokeballItems = pokeballSlots.Select(i => i.GetSaveData()).ToList(),
+            tmItems = tmSlots.Select(i => i.GetSaveData()).ToList(),
+        };
+
+        return saveData;
+    }
+
+    public void RestoreState(object state)
+    {
+        var saveData = state as InventorySaveData;
+        slots = saveData.items.Select(i => new ItemSlot(i)).ToList();
+        pokeballSlots = saveData.pokeballItems.Select(i => new ItemSlot(i)).ToList();
+        tmSlots = saveData.tmItems.Select(i => new ItemSlot(i)).ToList();
+
+        allSlots = new List<List<ItemSlot>>() { slots, pokeballSlots, tmSlots };
+
+        OnUpdated?.Invoke();
+    }
 }
 
-[System.Serializable]
+[Serializable]
 public class ItemSlot
 {
     [SerializeField] ItemBase item;
     [SerializeField] int count;
+
+    public ItemSlot() { }
+
+    public ItemSlot(ItemSaveData saveData)
+    {
+        item = ItemDB.GetItemByName(saveData.name);
+        count = saveData.count;
+    }
+
+    public ItemSaveData GetSaveData()
+    {
+        var saveData = new ItemSaveData()
+        {
+            name = item.Name,
+            count = count,
+        };
+
+        return saveData;
+    }
 
     public ItemBase Item
     {
@@ -126,4 +169,19 @@ public class ItemSlot
         get => count;
         set => count = value;
     }
+}
+
+[Serializable]
+public class ItemSaveData
+{
+    public string name;
+    public int count;
+}
+
+[Serializable]
+public class InventorySaveData
+{
+    public List<ItemSaveData> items;
+    public List<ItemSaveData> pokeballItems;
+    public List<ItemSaveData> tmItems;
 }

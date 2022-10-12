@@ -24,7 +24,7 @@ As of 10/11/2022, this project has followed along with Game Dev Experiment's tut
 * ~~Update volatile effects to allow to be affected together like leech seed and confusion~~ (Implemented 2022/10/7)
 * ~~Refactor dialogue system (Expected 2022/10/12)~~ (Implemented 2022/10/11)
 * ~~Add item pickup and NPC giving items (Expected 2022/10/12)~~ (Implemented 2022/10/11)
-* Allow items to be saved (Expected 2022/10/13)
+* ~~Allow items to be saved (Expected 2022/10/13)~~ (Implemented 2022/10/12)
 * Implement quest system (Expected 2022/10/14)
 * Implement pokemon evolutions (Expected 2022/10/15)
 * Implement healing and shops (Expected 2022/10/16)
