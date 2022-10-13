@@ -1962,12 +1962,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6479357558946533833, guid: 6894d1af93e171046a7fdd0833e0308b, type: 3}
       propertyPath: tmSlots.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6479357558946533833, guid: 6894d1af93e171046a7fdd0833e0308b, type: 3}
       propertyPath: tmSlots.Array.data[0].item
       value: 
-      objectReference: {fileID: 11400000, guid: 6662d4943a968d746b8722ad03d8b492, type: 2}
+      objectReference: {fileID: 11400000, guid: 1d68c7b4c5d6020449c08a89f7b5776b, type: 2}
     - target: {fileID: 6479357558946533833, guid: 6894d1af93e171046a7fdd0833e0308b, type: 3}
       propertyPath: tmSlots.Array.data[1].item
       value: 

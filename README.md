@@ -18,25 +18,28 @@ This is an example of the battle system.
 I DO NOT CLAIM ANY SPRITES AS MY OWN. ALL SPRITES BELONG TO POKEMON COMPANY AND ARE USED FOR NON-COMMERCIAL, PERSONAL USE.
 
 ## Next Steps
-As of 10/11/2022, this project has followed along with Game Dev Experiment's tutorial up to and including #63.
+As of 10/13/2022, this project has followed along with Game Dev Experiment's tutorial up to and including #70.
 * ~~Implementing Flinch condition~~ (Implemented 2022/10/5)
 * ~~Implementing Leech Seed condition~~ (Implemented 2022/10/7)
 * ~~Update volatile effects to allow to be affected together like leech seed and confusion~~ (Implemented 2022/10/7)
 * ~~Refactor dialogue system (Expected 2022/10/12)~~ (Implemented 2022/10/11)
 * ~~Add item pickup and NPC giving items (Expected 2022/10/12)~~ (Implemented 2022/10/11)
 * ~~Allow items to be saved (Expected 2022/10/13)~~ (Implemented 2022/10/12)
-* Implement quest system (Expected 2022/10/14)
+* ~~Implement quest system (Expected 2022/10/14)~~ (Implemented 2022/10/13)
+* Allow quests to be saved (Expected 2022/10/14)
 * Implement pokemon evolutions (Expected 2022/10/15)
 * Implement healing and shops (Expected 2022/10/16)
 * Implement pokemon storage (Expected 2022/10/17)
-* Implementing Pokemon abilities (Expected 2022/10/18)
-* Implementing weather conditions (Expected 2022/10/18)
+* General Improvements (2022/10/18 - 2022/10/31)
+    * Update opponent pokemon move loader logic
+    * Make a smooth update for HP bar when item used in party screen
+    * Scene management
+* Implementing Pokemon abilities (Expected 2022/11/1)
+* Implementing weather conditions (Expected 2022/11/1)
 * Including Yes/No dialog box for new moves for confirmation (TBD)
 * Including a settings menu item (TBD)
-* Update opponent pokemon move loader logic (TBD)
 * Baby Maker (No eggs, but transform current pokemon into a level 1 version of either itself or it's lowest evolution) (TBD)
 * Update TM Party Screen UI to leverage colors instead of text (TBD)
-* Make a smooth update for HP bar when item used in party screen (TBD)
 
 ## Pokemon Universe Resource Expansion
 * Caterpie (2022/10/7)
