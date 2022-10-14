@@ -26,7 +26,7 @@ As of 10/13/2022, this project has followed along with Game Dev Experiment's tut
 * ~~Add item pickup and NPC giving items (Expected 2022/10/12)~~ (Implemented 2022/10/11)
 * ~~Allow items to be saved (Expected 2022/10/13)~~ (Implemented 2022/10/12)
 * ~~Implement quest system (Expected 2022/10/14)~~ (Implemented 2022/10/13)
-* Allow quests to be saved (Expected 2022/10/14)
+* ~~Allow quests to be saved (Expected 2022/10/14)~~ (Implemented 2022/10/14)
 * Implement pokemon evolutions (Expected 2022/10/15)
 * Implement healing and shops (Expected 2022/10/16)
 * Implement pokemon storage (Expected 2022/10/17)

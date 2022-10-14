@@ -37,6 +37,7 @@ public class GameController : MonoBehaviour
         PokemonDB.Init();
         MoveDB.Init();
         ItemDB.Init();
+        QuestDB.Init();
     }
 
     // Start is called before the first frame update
