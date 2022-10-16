@@ -76,7 +76,7 @@ TextureImporter:
     second: objects_23
   - first:
       213: 5849325189442884660
-    second: objects_24
+    second: stone
   - first:
       213: 8753186556605219898
     second: objects_25
@@ -181,7 +181,7 @@ TextureImporter:
     second: objects_58
   - first:
       213: -6998631668141411158
-    second: objects_59
+    second: coin
   - first:
       213: 9171275872940762989
     second: objects_60
@@ -1015,7 +1015,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: objects_24
+      name: stone
       rect:
         serializedVersion: 2
         x: 260
@@ -1750,7 +1750,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: objects_59
+      name: coin
       rect:
         serializedVersion: 2
         x: 2

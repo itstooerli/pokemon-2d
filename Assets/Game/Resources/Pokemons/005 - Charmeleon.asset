@@ -40,3 +40,7 @@ MonoBehaviour:
     level: 12
   - moveBase: {fileID: 11400000, guid: 134a3a16018fa7e4ab72c085d9127e05, type: 2}
     level: 19
+  teachableMoves: []
+  evolutions:
+  - evolvesInto: {fileID: 11400000, guid: c585a5eeb9b64e0459cefc0273507cb2, type: 2}
+    requiredLevel: 36

@@ -211,7 +211,28 @@ public class InventoryUI : MonoBehaviour
         state = InventoryUIState.Busy;
 
         yield return HandleTmItems();
+
+        // Handle Evolution Items
+        var item = inventory.GetItem(selectedItem, selectedCategory);
+        var pokemon = partyScreen.SelectedMember;
+
+        if (item is EvolutionItem) 
+        {
+            var evolution = pokemon.CheckForEvolution(item);
+
+            if (evolution != null)
+            {
+                yield return EvolutionManager.i.Evolve(pokemon, evolution);
+            }
+            else
+            {
+                yield return DialogManager.Instance.ShowDialogText($"It won't have any effect!");
+                ClosePartyScreen();
+                yield break;
+            }
+        }
         
+        // Handle General Items
         var usedItem = inventory.UseItem(selectedItem, partyScreen.SelectedMember, selectedCategory);
         if (usedItem != null)
         {
@@ -295,6 +316,17 @@ public class InventoryUI : MonoBehaviour
         {
             var item = slots[selectedItem].Item;
             itemIcon.sprite = item.Icon;
+
+            // Color evolution items
+            if (item is EvolutionItem)
+            {
+                itemIcon.color = ((EvolutionItem)item).ItemColor;
+            }
+            else
+            {
+                itemIcon.color = Color.white;
+            }
+
             itemDescription.text = item.Description;
         }
         else

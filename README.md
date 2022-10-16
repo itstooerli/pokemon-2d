@@ -27,7 +27,7 @@ As of 10/13/2022, this project has followed along with Game Dev Experiment's tut
 * ~~Allow items to be saved (Expected 2022/10/13)~~ (Implemented 2022/10/12)
 * ~~Implement quest system (Expected 2022/10/14)~~ (Implemented 2022/10/13)
 * ~~Allow quests to be saved (Expected 2022/10/14)~~ (Implemented 2022/10/14)
-* Implement pokemon evolutions (Expected 2022/10/15)
+* ~~Implement pokemon evolutions (Expected 2022/10/15)~~ (Implemented 2022/10/16)
 * Implement healing and shops (Expected 2022/10/16)
 * Implement pokemon storage (Expected 2022/10/17)
 * General Improvements (2022/10/18 - 2022/10/31)
@@ -36,6 +36,7 @@ As of 10/13/2022, this project has followed along with Game Dev Experiment's tut
     * Scene management
 * Implementing Pokemon abilities (Expected 2022/11/1)
 * Implementing weather conditions (Expected 2022/11/1)
+* Implementing other evolution types, e.g. friendship, trades (Expected 2022/11/1)
 * Including Yes/No dialog box for new moves for confirmation (TBD)
 * Including a settings menu item (TBD)
 * Baby Maker (No eggs, but transform current pokemon into a level 1 version of either itself or it's lowest evolution) (TBD)
@@ -72,7 +73,7 @@ As of 10/13/2022, this project has followed along with Game Dev Experiment's tut
 ## Known Inconsistencies with Pokemon Games
 * ~~Fix where statuses should be checked after all moves are completed~~ (Fixed 2022/10/7)
 * ~~Fix where volatile status conditions should be cleared when switching pokemon~~ (Fixed 2022/10/7)
-* Fix where TMs are not sorted by name (currently via pickup) (deal with this upon implementing pickup)
+* Fix where items are not sorted by name
 
 ## Maintained Discrepancies
 * As with new version of the games, there will be no HMs. TMs will also be reusable.
