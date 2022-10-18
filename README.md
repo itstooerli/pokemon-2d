@@ -29,6 +29,7 @@ As of 10/13/2022, this project has followed along with Game Dev Experiment's tut
 * ~~Allow quests to be saved (Expected 2022/10/14)~~ (Implemented 2022/10/14)
 * ~~Implement pokemon evolutions (Expected 2022/10/15)~~ (Implemented 2022/10/16)
 * ~~Implement healing (Expected 2022/10/16)~~ (Implemented 2022/10/17)
+* ~~Implemented pokemon ranges and percentages for wild grass (ad hoc)~~ (Implemented 2022/10/17)
 * Implement shops (Expected 2022/10/18)
 * Implement pokemon storage (Expected 2022/10/19)
 * General Improvements (2022/10/20 - 2022/10/31)
@@ -65,6 +66,7 @@ As of 10/13/2022, this project has followed along with Game Dev Experiment's tut
 
 ## Known Issues
 * Fix bug where two characters can walk through each other if the motion is active before collision detection occurs
+* Fix bug where player can open the main menu right before entering leaving the menu stuck during the battle
 * ~~Fix bug where action selection box is still active when using a pokeball (and possibly item)~~ (Fixed 2022/10/10)
 * ~~Fix bug where using a pokeball during a trainer battle decrements the pokeball count and skips to the opponents turn~~ (Fixed 2022/10/10)
 * ~~Fix bug where spamming continue key upon learning TM move creates and error~~ (2022/10/10: possibly fixed, unable to recreate issue)
