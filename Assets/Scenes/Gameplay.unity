@@ -1962,7 +1962,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6479357558946533833, guid: 6894d1af93e171046a7fdd0833e0308b, type: 3}
       propertyPath: slots.Array.size
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6479357558946533833, guid: 6894d1af93e171046a7fdd0833e0308b, type: 3}
       propertyPath: tmSlots.Array.size
@@ -1973,7 +1973,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: a92168c8acc739c4fbd1fe6d7061b569, type: 2}
     - target: {fileID: 6479357558946533833, guid: 6894d1af93e171046a7fdd0833e0308b, type: 3}
+      propertyPath: slots.Array.data[9].item
+      value: 
+      objectReference: {fileID: 11400000, guid: 53db58edc61e36d419549fb3984578d6, type: 2}
+    - target: {fileID: 6479357558946533833, guid: 6894d1af93e171046a7fdd0833e0308b, type: 3}
       propertyPath: slots.Array.data[8].count
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6479357558946533833, guid: 6894d1af93e171046a7fdd0833e0308b, type: 3}
+      propertyPath: slots.Array.data[9].count
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6479357558946533833, guid: 6894d1af93e171046a7fdd0833e0308b, type: 3}

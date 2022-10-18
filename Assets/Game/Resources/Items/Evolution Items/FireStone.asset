@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f077b3f40c81d34492c0e839e66f7a7, type: 3}
   m_Name: FireStone
   m_EditorClassIdentifier: 
-  name: Water Stone
+  name: Fire Stone
   description: Evolves certain pokemon
   icon: {fileID: 5849325189442884660, guid: 3ae12697ae504414bbf0797ea36dfddd, type: 3}
-  itemColor: {r: 1, g: 1, b: 1, a: 0}
+  itemColor: {r: 1, g: 0.06132078, b: 0.06132078, a: 1}

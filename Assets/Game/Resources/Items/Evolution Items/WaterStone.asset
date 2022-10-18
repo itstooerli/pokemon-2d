@@ -15,4 +15,4 @@ MonoBehaviour:
   name: Water Stone
   description: Evolves certain pokemon
   icon: {fileID: 5849325189442884660, guid: 3ae12697ae504414bbf0797ea36dfddd, type: 3}
-  itemColor: {r: 1, g: 1, b: 1, a: 0}
+  itemColor: {r: 0, g: 0.67873216, b: 1, a: 1}

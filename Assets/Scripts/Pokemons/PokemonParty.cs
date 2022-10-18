@@ -66,6 +66,11 @@ public class PokemonParty : MonoBehaviour
        return FindObjectOfType<PlayerController>().GetComponent<PokemonParty>();
     }
 
+    public void PartyUpdated()
+    {
+        OnUpdated?.Invoke();
+    }
+
     public void SwapPokemonInParty(int firstMember, int secondMember)
     {
         var temp = pokemons[firstMember];

@@ -837,6 +837,108 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1001 &669463692
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 94620927208242912, guid: d017eba6b217a474296fad1335addc52, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 94620927208242912, guid: d017eba6b217a474296fad1335addc52, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -33.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 94620927208242912, guid: d017eba6b217a474296fad1335addc52, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 94620927208242912, guid: d017eba6b217a474296fad1335addc52, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 94620927208242912, guid: d017eba6b217a474296fad1335addc52, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 94620927208242912, guid: d017eba6b217a474296fad1335addc52, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 94620927208242912, guid: d017eba6b217a474296fad1335addc52, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 94620927208242912, guid: d017eba6b217a474296fad1335addc52, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 94620927208242912, guid: d017eba6b217a474296fad1335addc52, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 94620927208242912, guid: d017eba6b217a474296fad1335addc52, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 94620927208242912, guid: d017eba6b217a474296fad1335addc52, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 94620927208242914, guid: d017eba6b217a474296fad1335addc52, type: 3}
+      propertyPath: m_Name
+      value: Healer
+      objectReference: {fileID: 0}
+    - target: {fileID: 94620927208242919, guid: d017eba6b217a474296fad1335addc52, type: 3}
+      propertyPath: questToComplete
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 94620927208242919, guid: d017eba6b217a474296fad1335addc52, type: 3}
+      propertyPath: dialog.lines.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 94620927208242919, guid: d017eba6b217a474296fad1335addc52, type: 3}
+      propertyPath: dialog.lines.Array.data[0]
+      value: You look tired. Let me help you rest up.
+      objectReference: {fileID: 0}
+    - target: {fileID: 94620927208242919, guid: d017eba6b217a474296fad1335addc52, type: 3}
+      propertyPath: dialog.lines.Array.data[1]
+      value: Lots of Pokemon out in the tall grass.
+      objectReference: {fileID: 0}
+    - target: {fileID: 94620927208242919, guid: d017eba6b217a474296fad1335addc52, type: 3}
+      propertyPath: movementPattern.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 94620927208242919, guid: d017eba6b217a474296fad1335addc52, type: 3}
+      propertyPath: movementPattern.Array.data[0].x
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8089577064583231408, guid: d017eba6b217a474296fad1335addc52, type: 3}
+      propertyPath: uniqueId
+      value: 9c68b38c-9374-4039-a843-eea9ab6c6755
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d017eba6b217a474296fad1335addc52, type: 3}
+--- !u!1 &669463693 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 94620927208242914, guid: d017eba6b217a474296fad1335addc52, type: 3}
+  m_PrefabInstance: {fileID: 669463692}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &669463694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 669463693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc963d16cde2e8c46ac2d1f2dfb73b8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1192507112
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -890,7 +992,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 94620927208242914, guid: d017eba6b217a474296fad1335addc52, type: 3}
       propertyPath: m_Name
-      value: NPC
+      value: PokemonGiver
       objectReference: {fileID: 0}
     - target: {fileID: 94620927208242919, guid: d017eba6b217a474296fad1335addc52, type: 3}
       propertyPath: questToComplete

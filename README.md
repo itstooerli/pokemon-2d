@@ -28,9 +28,10 @@ As of 10/13/2022, this project has followed along with Game Dev Experiment's tut
 * ~~Implement quest system (Expected 2022/10/14)~~ (Implemented 2022/10/13)
 * ~~Allow quests to be saved (Expected 2022/10/14)~~ (Implemented 2022/10/14)
 * ~~Implement pokemon evolutions (Expected 2022/10/15)~~ (Implemented 2022/10/16)
-* Implement healing and shops (Expected 2022/10/16)
-* Implement pokemon storage (Expected 2022/10/17)
-* General Improvements (2022/10/18 - 2022/10/31)
+* ~~Implement healing (Expected 2022/10/16)~~ (Implemented 2022/10/17)
+* Implement shops (Expected 2022/10/18)
+* Implement pokemon storage (Expected 2022/10/19)
+* General Improvements (2022/10/20 - 2022/10/31)
     * Update opponent pokemon move loader logic
     * Make a smooth update for HP bar when item used in party screen
     * Scene management
